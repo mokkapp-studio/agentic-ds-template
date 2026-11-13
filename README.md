@@ -1,6 +1,32 @@
-# ds-template
+<p align="center">
+  <img src="docs/assets/cover.svg" alt="agentic-ds template — de Figma a contratos, tokens, código y docs" width="100%">
+</p>
 
-Plantilla para llevar un sistema de diseño de **Figma** a **contratos**, tokens, código y documentación, con un flujo de trabajo agéntico: una IA lee, propone y genera; las personas deciden.
+<h1 align="center">agentic-ds template</h1>
+
+<p align="center">
+  Plantilla para llevar un sistema de diseño de <b>Figma</b> a <b>contratos</b>, tokens, código y documentación,<br>
+  con un flujo agéntico: una IA lee, propone y genera; las personas deciden.
+</p>
+
+<p align="center">
+  <img alt="Node 20+" src="https://img.shields.io/badge/Node-20%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white">
+  <img alt="Figma" src="https://img.shields.io/badge/Figma-MCP%20%2F%20Console-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
+  <img alt="Claude Code" src="https://img.shields.io/badge/Claude%20Code-skills%20%2B%20hooks-D97757?style=for-the-badge&logo=anthropic&logoColor=white">
+  <img alt="Design Tokens" src="https://img.shields.io/badge/Tokens-DTCG-7C5CFF?style=for-the-badge">
+  <img alt="Cloud" src="https://img.shields.io/badge/Cloud-GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white">
+  <img alt="Stack agnóstico" src="https://img.shields.io/badge/Stack-agn%C3%B3stico-0B0B0F?style=for-the-badge">
+  <img alt="Dependencias" src="https://img.shields.io/badge/dependencias-0-00D4A6?style=for-the-badge">
+</p>
+
+<p align="center">
+  <a href="docs/guia/README.md"><b>Guía</b></a> ·
+  <a href="AGENTS.md">Reglas para la IA</a> ·
+  <a href="GOBERNANZA.md">Gobernanza</a> ·
+  <a href="#empezar">Empezar</a>
+</p>
+
+---
 
 ```
 Figma ──► contrato (fuente de verdad) ──► código + documentación

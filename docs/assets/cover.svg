@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" fill="none" font-family="-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Helvetica,Arial,sans-serif">
+  <title>agentic-ds template</title>
+  <defs>
+    <radialGradient id="glowA" cx="78%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#7C5CFF" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#7C5CFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="10%" cy="100%" r="50%">
+      <stop offset="0" stop-color="#00D4A6" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#00D4A6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="top" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#B9A7FF"/><stop offset="1" stop-color="#7C5CFF"/>
+    </linearGradient>
+    <linearGradient id="left" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4A33B8"/><stop offset="1" stop-color="#2A1D75"/>
+    </linearGradient>
+    <linearGradient id="right" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6A4DE6"/><stop offset="1" stop-color="#3A28A0"/>
+    </linearGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#B9A7FF"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" stroke="#FFFFFF" stroke-opacity=".045"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="520" rx="20" fill="#0B0B0F"/>
+  <rect width="1280" height="520" rx="20" fill="url(#grid)"/>
+  <rect width="1280" height="520" rx="20" fill="url(#glowA)"/>
+  <rect width="1280" height="520" rx="20" fill="url(#glowB)"/>
+  <rect x=".5" y=".5" width="1279" height="519" rx="19.5" stroke="#FFFFFF" stroke-opacity=".08"/>
+
+  <!-- pill -->
+  <rect x="72" y="72" width="238" height="32" rx="16" fill="#FFFFFF" fill-opacity=".06" stroke="#FFFFFF" stroke-opacity=".12"/>
+  <circle cx="92" cy="88" r="4" fill="#00D4A6"/>
+  <text x="106" y="93" fill="#C9C9D4" font-size="13" font-weight="500" letter-spacing=".3">Design System · AI-native</text>
+
+  <!-- title -->
+  <text x="72" y="196" fill="url(#title)" font-size="76" font-weight="700" letter-spacing="-2.5">agentic-ds</text>
+  <text x="72" y="268" fill="#FFFFFF" fill-opacity=".92" font-size="76" font-weight="700" letter-spacing="-2.5">template</text>
+
+  <text x="72" y="318" fill="#9A9AAB" font-size="21">De Figma a contratos, tokens, código y docs.</text>
+  <text x="72" y="348" fill="#9A9AAB" font-size="21">La IA propone. Las personas deciden.</text>
+
+  <!-- pipeline -->
+  <g font-size="14" font-weight="600">
+    <rect x="72" y="400" width="110" height="40" rx="10" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".14"/>
+    <text x="127" y="425" text-anchor="middle" fill="#F2F2F7">Figma</text>
+    <path d="M190 420h26m-6-6 6 6-6 6" stroke="#7C5CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="224" y="400" width="120" height="40" rx="10" fill="#7C5CFF" fill-opacity=".22" stroke="#7C5CFF" stroke-opacity=".7"/>
+    <text x="284" y="425" text-anchor="middle" fill="#fff">Contrato</text>
+    <path d="M352 420h26m-6-6 6 6-6 6" stroke="#7C5CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="386" y="400" width="128" height="40" rx="10" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".14"/>
+    <text x="450" y="425" text-anchor="middle" fill="#F2F2F7">Código + Docs</text>
+  </g>
+
+  <!-- isometric stack -->
+  <g transform="translate(930 270)">
+    <!-- base ring -->
+    <ellipse cx="0" cy="150" rx="210" ry="58" stroke="#7C5CFF" stroke-opacity=".25"/>
+    <ellipse cx="0" cy="150" rx="150" ry="40" stroke="#7C5CFF" stroke-opacity=".35" stroke-dasharray="3 7"/>
+
+    <!-- layer 3 (bottom): tokens -->
+    <g transform="translate(0 70)">
+      <path d="M0 40 -120 -10 0 -60 120 -10Z" fill="url(#top)" fill-opacity=".35" stroke="#B9A7FF" stroke-opacity=".6"/>
+      <path d="M-120 -10 0 40V62L-120 12Z" fill="url(#left)" fill-opacity=".8"/>
+      <path d="M120 -10 0 40V62L120 12Z" fill="url(#right)" fill-opacity=".8"/>
+    </g>
+    <!-- layer 2: contrato -->
+    <g transform="translate(0 20)">
+      <path d="M0 40 -120 -10 0 -60 120 -10Z" fill="url(#top)" fill-opacity=".6" stroke="#B9A7FF" stroke-opacity=".8"/>
+      <path d="M-120 -10 0 40V62L-120 12Z" fill="url(#left)"/>
+      <path d="M120 -10 0 40V62L120 12Z" fill="url(#right)"/>
+    </g>
+    <!-- layer 1 (top): componente -->
+    <g transform="translate(0 -40)">
+      <path d="M0 40 -120 -10 0 -60 120 -10Z" fill="url(#top)" stroke="#fff" stroke-opacity=".7"/>
+      <path d="M-120 -10 0 40V62L-120 12Z" fill="url(#left)"/>
+      <path d="M120 -10 0 40V62L120 12Z" fill="url(#right)"/>
+      <!-- sparkle -->
+      <path d="M0 -10l6 14 14 6-14 6-6 14-6-14-14-6 14-6Z" fill="#fff"/>
+    </g>
+
+    <!-- labels -->
+    <g font-size="12" font-weight="600" fill="#C9C9D4">
+      <path d="M126 -50h60" stroke="#fff" stroke-opacity=".25"/>
+      <text x="194" y="-46">Componentes</text>
+      <path d="M126 0h60" stroke="#fff" stroke-opacity=".25"/>
+      <text x="194" y="4">Contratos</text>
+      <path d="M126 50h60" stroke="#fff" stroke-opacity=".25"/>
+      <text x="194" y="54">Tokens DTCG</text>
+    </g>
+  </g>
+</svg>
