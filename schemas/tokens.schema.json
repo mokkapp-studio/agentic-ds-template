@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Archivo de tokens (subconjunto DTCG)",
+  "description": "Valida tokens/primitive.json, semantic.json, component.json y themes/<modo>.json. Un nodo con $value es un token; el resto son grupos.",
+  "$ref": "#/$defs/group",
+  "$defs": {
+    "type": {
+      "type": "string",
+      "enum": ["color", "dimension", "fontFamily", "fontWeight", "number", "duration", "cubicBezier", "typography", "shadow", "border", "strokeStyle"]
+    },
+    "figmaExt": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "variable": { "type": ["string", "null"], "description": "Nombre de la variable en Figma (Collection/grupo/nombre)." },
+        "collection": { "type": ["string", "null"] },
+        "id": { "type": ["string", "null"] },
+        "scopes": { "type": "array", "items": { "type": "string" } },
+        "style": { "type": ["string", "null"], "description": "Si viene de un estilo de texto o efecto y no de una variable." }
+      }
+    },
+    "token": {
+      "type": "object",
+      "required": ["$value"],
+      "additionalProperties": false,
+      "properties": {
+        "$value": {},
+        "$type": { "$ref": "#/$defs/type" },
+        "$description": { "type": "string" },
+        "$deprecated": { "type": ["boolean", "string"] },
+        "$extensions": {
+          "type": "object",
+          "properties": {
+            "figma": { "$ref": "#/$defs/figmaExt" },
+            "provenance": { "type": "string", "enum": ["measured", "inferred", "decided"] }
+          }
+        }
+      }
+    },
+    "group": {
+      "type": "object",
+      "properties": {
+        "$schema": { "type": "string" },
+        "$type": { "$ref": "#/$defs/type" },
+        "$description": { "type": "string" },
+        "$extensions": { "type": "object" }
+      },
+      "propertyNames": { "pattern": "^(\\$(schema|type|description|extensions)|[a-z0-9][a-z0-9-]*)$" },
+      "patternProperties": {
+        "^[a-z0-9][a-z0-9-]*$": { "anyOf": [{ "$ref": "#/$defs/token" }, { "$ref": "#/$defs/group" }] }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../schemas/contract.schema.json",
+  "name": "__NAME__",
+  "version": "0.1.0",
+  "status": "draft",
+  "category": "other",
+  "figma": { "url": null, "node": null, "componentKey": null, "variantCount": null, "description": null, "properties": [] },
+  "intent": { "purpose": null, "useWhen": [], "dontUseFor": [], "related": [] },
+  "props": [],
+  "states": [],
+  "anatomy": {
+    "root": { "figmaLayer": null, "element": null, "tokens": {}, "when": {} }
+  },
+  "layout": { "width": null, "height": null, "autoLayout": null, "responsive": null },
+  "behavior": { "pattern": null, "element": null, "events": [] },
+  "a11y": { "role": null, "name": null, "keyboard": [], "focusVisible": null, "minTarget": null, "contrast": "AA", "notes": [] },
+  "governance": { "owner": null, "canExtend": [], "askFirst": [] },
+  "meta": { "needsReview": [], "provenance": {}, "code": null }
+}

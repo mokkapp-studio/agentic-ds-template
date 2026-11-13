@@ -1,0 +1,23 @@
+# Sistema de diseño (sin configurar)
+
+> Sistema de diseño gobernado por contratos. El contrato (contracts/components/<Nombre>/contract.json) es la fuente de verdad; Figma se lee y el código se genera.
+
+## Reglas
+- [AGENTS.md](AGENTS.md): reglas para cualquier IA
+- [GOBERNANZA.md](GOBERNANZA.md): quién decide, estados, versiones
+
+## Fundamentos
+- [Configuración](ds.config.json)
+- [Tokens CSS](tokens/build/tokens.css) · [Tokens planos](tokens/build/tokens.json)
+- [Iconos](icons/registry.json)
+- [Vocabulario](contracts/vocabulary.json)
+
+## Componentes
+- (ninguno todavía)
+
+## Decisiones
+- [0001 · El contrato es la fuente de verdad: Figma se lee y el código se genera](docs/adr/0001-el-contrato-es-la-fuente-de-verdad.md)
+- [0002 · Tokens DTCG en capas: los componentes nunca usan primitivos](docs/adr/0002-tokens-dtcg-en-capas.md)
+- [0003 · Toda propiedad de Figma se clasifica en 7 clases antes de ser prop](docs/adr/0003-siete-clases-de-propiedad-de-figma.md)
+- [0004 · El comportamiento se describe con patrones WAI-ARIA, no con una librería](docs/adr/0004-comportamiento-con-patrones-wai-aria.md)
+- [0005 · Lo que no se puede leer no se inventa: null, needsReview y procedencia](docs/adr/0005-lo-que-no-se-puede-leer-no-se-inventa.md)

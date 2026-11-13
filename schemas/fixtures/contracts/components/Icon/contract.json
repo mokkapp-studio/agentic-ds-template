@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../../contract.schema.json",
+  "name": "Icon",
+  "version": "1.0.0",
+  "status": "review",
+  "category": "media",
+  "figma": { "url": null, "node": null, "componentKey": null, "variantCount": null, "properties": [] },
+  "intent": {
+    "purpose": "Pinta un icono del registro. Único punto de entrada a la librería de iconos.",
+    "useWhen": ["Siempre que haya un icono"],
+    "dontUseFor": [{ "case": "Ilustraciones o logotipos", "useInstead": null, "why": "No están en el registro." }],
+    "related": ["Button"]
+  },
+  "props": [
+    { "name": "name", "type": "string", "default": null, "required": true, "description": "Nombre en icons/registry.json.", "figma": null },
+    { "name": "size", "type": "enum", "values": ["s", "m", "l"], "default": "m", "required": false, "description": "Token icon.size.*", "figma": null },
+    { "name": "label", "type": "string", "default": null, "required": false, "description": "Si se pasa, deja de ser decorativo y se anuncia.", "figma": null }
+  ],
+  "states": [],
+  "anatomy": { "root": { "figmaLayer": null, "element": "svg", "tokens": { "width": "icon.size.{size}", "height": "icon.size.{size}" } } },
+  "layout": { "width": { "mode": "fixed", "token": "icon.size.m" }, "height": { "mode": "fixed", "token": "icon.size.m" }, "autoLayout": null, "responsive": null },
+  "behavior": { "pattern": "img", "element": "svg", "events": [] },
+  "a11y": { "role": "img", "name": { "from": "aria-label", "required": false }, "keyboard": [], "focusVisible": null, "minTarget": null, "contrast": "AA", "notes": ["Sin label: aria-hidden=true."] },
+  "media": { "source": "registry", "decorative": "prop", "alt": "label", "fallback": null, "sizes": ["s", "m", "l"], "aspectRatio": "1/1" },
+  "governance": { "owner": "equipo-fixture", "canExtend": [], "askFirst": ["Añadir iconos al registro"] },
+  "meta": { "needsReview": [], "provenance": {}, "code": null }
+}

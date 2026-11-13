@@ -1,0 +1,47 @@
+{
+  "$schema": "../../../../contract.schema.json",
+  "name": "Slider",
+  "version": "0.1.0",
+  "status": "review",
+  "category": "form",
+  "figma": {
+    "url": "https://www.figma.com/design/FIXTURE/fixture?node-id=7-1", "node": "7:1", "componentKey": "fixture-slider", "variantCount": 3,
+    "properties": [
+      { "name": "State", "type": "VARIANT", "values": ["Default", "Hover", "Focus"], "default": "Default", "class": "interaction", "mapsTo": "states.hover" },
+      { "name": "Disabled", "type": "BOOLEAN", "default": false, "class": "declared", "mapsTo": "states.disabled" }
+    ]
+  },
+  "intent": { "purpose": "Elige un valor numérico dentro de un rango.", "useWhen": ["Volumen, brillo, filtros de precio aproximados"], "dontUseFor": [{ "case": "Valores exactos", "useInstead": "TextField", "why": "Teclear es más preciso." }], "related": ["TextField"] },
+  "props": [
+    { "name": "value", "type": "number", "default": null, "required": false, "description": "Controlado.", "figma": null },
+    { "name": "defaultValue", "type": "number", "default": 0, "required": false, "description": "Inicial.", "figma": null },
+    { "name": "min", "type": "number", "default": 0, "required": false, "description": "Mínimo.", "figma": null },
+    { "name": "max", "type": "number", "default": 100, "required": false, "description": "Máximo.", "figma": null },
+    { "name": "step", "type": "number", "default": 1, "required": false, "description": "Paso.", "figma": null },
+    { "name": "label", "type": "string", "default": null, "required": true, "description": "Nombre accesible.", "figma": null },
+    { "name": "disabled", "type": "boolean", "default": false, "required": false, "description": "No interactivo.", "figma": { "property": "Disabled", "type": "BOOLEAN" } }
+  ],
+  "states": [
+    { "name": "value", "kind": "value", "control": "shared", "prop": "value", "aria": "aria-valuenow" },
+    { "name": "hover", "kind": "interaction", "control": "browser", "css": ":hover", "figma": { "property": "State", "value": "Hover" } },
+    { "name": "focusVisible", "kind": "interaction", "control": "browser", "css": ":focus-visible", "figma": { "property": "State", "value": "Focus" } },
+    { "name": "disabled", "kind": "declared", "control": "consumer", "prop": "disabled", "css": "[data-disabled]", "aria": "aria-disabled", "figma": { "property": "Disabled", "value": true } }
+  ],
+  "anatomy": {
+    "root": { "figmaLayer": "Slider", "element": "div", "tokens": {} },
+    "track": { "figmaLayer": "Track", "element": "div", "tokens": { "background": "color.fill.neutral", "height": "size.track", "border-radius": "radius.full" } },
+    "range": { "figmaLayer": "Range", "element": "div", "parent": "track", "tokens": { "background": "color.fill.brand" }, "when": { "state=disabled": { "background": "color.fill.disabled" } } },
+    "thumb": { "figmaLayer": "Thumb", "element": "div", "role": "slider", "tokens": { "width": "size.thumb", "height": "size.thumb", "background": "color.fill.surface", "border-color": "color.border.focus", "border-radius": "radius.full" }, "when": { "state=focusVisible": { "outline-color": "color.border.focus", "outline-width": "border-width.focus" } } }
+  },
+  "layout": { "width": { "mode": "fill", "token": null }, "height": { "mode": "fixed", "token": "size.target.min" }, "autoLayout": null, "responsive": null },
+  "behavior": { "pattern": "slider", "element": "div", "events": [{ "name": "change", "payload": "number", "when": "Mientras se arrastra." }, { "name": "valueCommit", "payload": "number", "when": "Al soltar." }] },
+  "a11y": {
+    "role": "slider", "name": { "from": "aria-label", "required": true },
+    "keyboard": [{ "key": "Flechas", "action": "± step" }, { "key": "Re Pág / Av Pág", "action": "± pageStep" }, { "key": "Inicio / Fin", "action": "min / max" }],
+    "focusVisible": "thumb", "minTarget": "size.target.min", "contrast": "AA"
+  },
+  "form": { "value": { "type": "number", "control": "both" }, "nativeInput": "input[type=range]", "label": null, "description": null, "error": null, "required": false, "validation": ["min", "max"], "submitsAs": "value" },
+  "range": { "min": 0, "max": 100, "step": 1, "pageStep": 10, "orientation": "horizontal", "thumbs": 1, "valueText": "{value}" },
+  "governance": { "owner": "equipo-fixture", "canExtend": [], "askFirst": [] },
+  "meta": { "needsReview": [], "provenance": {}, "code": null }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "ds-template",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Plantilla agnóstica para llevar un sistema de diseño de Figma a contratos, tokens, código y documentación con skills de IA.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "tokens": "node scripts/build-tokens.mjs",
+    "check": "node scripts/check.mjs",
+    "check:self": "node scripts/build-tokens.mjs --root schemas/fixtures && node scripts/check.mjs --root schemas/fixtures --self",
+    "docs": "node scripts/docs.mjs",
+    "new": "node scripts/new.mjs"
+  }
+}

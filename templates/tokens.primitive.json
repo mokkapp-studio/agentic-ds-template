@@ -1,0 +1,13 @@
+{
+  "$schema": "../schemas/tokens.schema.json",
+  "$description": "Capa PRIMITIVA: valores crudos. Nunca la usa un componente. Copiada de templates/tokens.primitive.json por ds-tokens.",
+  "color": {
+    "$type": "color",
+    "ejemplo-borrar": {
+      "500": {
+        "$value": "#000000",
+        "$extensions": { "figma": { "variable": "Primitives/color/ejemplo/500", "collection": "Primitives", "scopes": [] } }
+      }
+    }
+  }
+}

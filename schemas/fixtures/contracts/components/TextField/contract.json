@@ -1,0 +1,78 @@
+{
+  "$schema": "../../../../contract.schema.json",
+  "name": "TextField",
+  "version": "0.3.0",
+  "status": "review",
+  "category": "form",
+  "figma": {
+    "url": "https://www.figma.com/design/FIXTURE/fixture?node-id=3-1", "node": "3:1", "componentKey": "fixture-textfield", "variantCount": 18,
+    "properties": [
+      { "name": "Size", "type": "VARIANT", "values": ["S", "M"], "default": "M", "class": "prop", "mapsTo": "props.size" },
+      { "name": "State", "type": "VARIANT", "values": ["Default", "Hover", "Focus", "Filled"], "default": "Default", "class": "interaction", "mapsTo": "states.hover" },
+      { "name": "Invalid", "type": "BOOLEAN", "default": false, "class": "declared", "mapsTo": "states.invalid" },
+      { "name": "Disabled", "type": "BOOLEAN", "default": false, "class": "declared", "mapsTo": "states.disabled" },
+      { "name": "Label", "type": "TEXT", "default": "Label", "class": "content", "mapsTo": "props.label" },
+      { "name": "Helper", "type": "TEXT", "default": "Helper", "class": "content", "mapsTo": "props.description" },
+      { "name": "Show helper", "type": "BOOLEAN", "default": true, "class": "content", "mapsTo": "anatomy.description" },
+      { "name": "Prefix", "type": "SLOT", "class": "content", "mapsTo": "anatomy.prefix" },
+      { "name": "Suffix", "type": "SLOT", "class": "content", "mapsTo": "anatomy.suffix" }
+    ]
+  },
+  "intent": {
+    "purpose": "Introduce una línea de texto con etiqueta, ayuda y error.",
+    "useWhen": ["Nombre, email, búsqueda, cualquier texto corto"],
+    "dontUseFor": [{ "case": "Texto de varias líneas", "useInstead": "TextArea", "why": null }, { "case": "Elegir de una lista cerrada", "useInstead": "Select", "why": null }],
+    "related": ["TextArea", "Select"]
+  },
+  "props": [
+    { "name": "size", "type": "enum", "values": ["s", "m"], "default": "m", "required": false, "description": "Altura.", "figma": { "property": "Size", "type": "VARIANT", "valueMap": { "S": "s", "M": "m" } } },
+    { "name": "label", "type": "string", "default": null, "required": true, "description": "Etiqueta visible.", "figma": { "property": "Label", "type": "TEXT" } },
+    { "name": "description", "type": "string", "default": null, "required": false, "description": "Texto de ayuda.", "figma": { "property": "Helper", "type": "TEXT" } },
+    { "name": "errorMessage", "type": "string", "default": null, "required": false, "description": "Se muestra si invalid.", "figma": null },
+    { "name": "value", "type": "string", "default": null, "required": false, "description": "Valor controlado.", "figma": null },
+    { "name": "defaultValue", "type": "string", "default": null, "required": false, "description": "Valor inicial.", "figma": null },
+    { "name": "prefix", "type": "node", "default": null, "required": false, "description": "Contenido antes del texto (icono, moneda).", "figma": { "property": "Prefix", "type": "SLOT" } },
+    { "name": "suffix", "type": "node", "default": null, "required": false, "description": "Contenido después (botón limpiar, unidad).", "figma": { "property": "Suffix", "type": "SLOT" } },
+    { "name": "disabled", "type": "boolean", "default": false, "required": false, "description": "No editable.", "figma": { "property": "Disabled", "type": "BOOLEAN" } },
+    { "name": "invalid", "type": "boolean", "default": false, "required": false, "description": "Valor no válido.", "figma": { "property": "Invalid", "type": "BOOLEAN" } }
+  ],
+  "states": [
+    { "name": "hover", "kind": "interaction", "control": "browser", "css": ":hover", "figma": { "property": "State", "value": "Hover" } },
+    { "name": "focusVisible", "kind": "interaction", "control": "browser", "css": ":focus-within", "figma": { "property": "State", "value": "Focus" } },
+    { "name": "disabled", "kind": "declared", "control": "consumer", "prop": "disabled", "css": "[data-disabled]", "aria": "disabled", "figma": { "property": "Disabled", "value": true } },
+    { "name": "invalid", "kind": "declared", "control": "consumer", "prop": "invalid", "css": "[data-invalid]", "aria": "aria-invalid", "figma": { "property": "Invalid", "value": true } },
+    { "name": "value", "kind": "value", "control": "shared", "prop": "value", "aria": "value" }
+  ],
+  "anatomy": {
+    "root": { "figmaLayer": "TextField", "element": "div", "tokens": { "gap": "space.xs" } },
+    "label": { "figmaLayer": "Label", "element": "label", "tokens": { "font": "typography.label", "color": "color.text.default" } },
+    "group": {
+      "figmaLayer": "Input", "element": "div",
+      "tokens": { "background": "color.fill.surface", "border-color": "color.border.default", "border-width": "border-width.default", "border-radius": "radius.m", "min-height": "size.control.m", "padding-inline": "space.m", "gap": "space.s" },
+      "when": {
+        "size=s": { "min-height": "size.control.s" },
+        "state=hover": { "border-color": "color.border.strong" },
+        "state=focusVisible": { "border-color": "color.border.focus" },
+        "state=invalid": { "border-color": "color.border.danger" },
+        "state=disabled": { "background": "color.fill.disabled", "border-color": "color.border.disabled" }
+      }
+    },
+    "prefix": { "figmaLayer": "Prefix", "element": "span", "parent": "group", "optional": true, "visibleWhen": "prefix", "slot": { "accepts": ["Icon", "text"], "min": 0, "max": 1, "prop": "prefix" }, "tokens": { "color": "color.text.subtle" } },
+    "input": { "figmaLayer": "Value", "element": "input", "parent": "group", "tokens": { "font": "typography.body", "color": "color.text.default" }, "when": { "state=disabled": { "color": "color.text.disabled" } } },
+    "suffix": { "figmaLayer": "Suffix", "element": "span", "parent": "group", "optional": true, "visibleWhen": "suffix", "slot": { "accepts": ["Icon", "Button", "text"], "min": 0, "max": 1, "prop": "suffix" }, "tokens": {} },
+    "description": { "figmaLayer": "Helper", "element": "p", "optional": true, "visibleWhen": "description", "tokens": { "font": "typography.label", "color": "color.text.subtle" } },
+    "error": { "figmaLayer": null, "element": "p", "optional": true, "visibleWhen": "state=invalid", "tokens": { "font": "typography.label", "color": "color.text.danger" } }
+  },
+  "layout": { "width": { "mode": "fill", "token": null }, "height": { "mode": "hug", "token": null }, "autoLayout": { "direction": "vertical", "align": "start", "gap": "space.xs", "padding": null }, "responsive": null },
+  "behavior": { "pattern": "textbox", "element": "input", "events": [{ "name": "change", "payload": "string", "when": "Al cambiar el texto." }] },
+  "a11y": {
+    "role": "native", "name": { "from": "label-part", "required": true },
+    "keyboard": [{ "key": "Tab", "action": "Entra y sale del campo" }],
+    "focusVisible": "group", "minTarget": "size.target.min", "contrast": "AA",
+    "notes": ["description y error se enlazan con aria-describedby.", "El placeholder nunca sustituye a la etiqueta."]
+  },
+  "form": { "value": { "type": "string", "control": "both" }, "nativeInput": "input[type=text]", "label": "label", "description": "description", "error": "error", "required": true, "validation": ["required", "minLength", "maxLength", "pattern"], "submitsAs": "value" },
+  "content": { "maxLength": null, "casing": "sentence", "truncation": "none", "voice": "Etiqueta corta, sin dos puntos." },
+  "governance": { "owner": "equipo-fixture", "canExtend": ["Contenido de prefix y suffix"], "askFirst": ["Tamaños nuevos"] },
+  "meta": { "needsReview": [], "provenance": { "props": { "source": "measured", "by": "ds-contract", "at": "2026-01-10", "ref": "3:1" }, "a11y": { "source": "decided", "by": "equipo-fixture", "at": "2026-01-12", "ref": null } }, "code": null }
+}

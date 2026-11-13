@@ -1,0 +1,11 @@
+{
+  "$schema": "../ds-config.schema.json",
+  "name": "Fixture",
+  "prefix": "fx",
+  "language": "es",
+  "owner": "equipo-fixture",
+  "figma": { "fileUrl": "https://www.figma.com/design/FIXTURE/fixture", "fileKey": "FIXTURE", "bridge": "export-json" },
+  "stack": { "framework": "react", "language": "typescript", "styling": "css-modules", "headless": "native" },
+  "modes": ["light", "dark"],
+  "paths": { "tokens": "tokens", "icons": "icons", "contracts": "contracts/components", "code": "src/components", "docs": "docs" }
+}

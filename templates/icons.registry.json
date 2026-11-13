@@ -1,0 +1,12 @@
+{
+  "$schema": "../schemas/icons.schema.json",
+  "library": "lucide",
+  "package": null,
+  "version": null,
+  "docs": null,
+  "naming": "PascalCase",
+  "defaults": { "size": "icon.size.m", "strokeWidth": null, "weight": null },
+  "sizes": ["s", "m", "l"],
+  "rules": { "decorativeByDefault": true, "color": "currentColor", "stroke": null },
+  "icons": []
+}

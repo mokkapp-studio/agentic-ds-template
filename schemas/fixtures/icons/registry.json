@@ -1,0 +1,17 @@
+{
+  "$schema": "../../icons.schema.json",
+  "library": "lucide",
+  "package": "lucide-react",
+  "version": "0.400.0",
+  "docs": "https://lucide.dev/icons",
+  "naming": "PascalCase",
+  "defaults": { "size": "icon.size.m", "strokeWidth": 2, "weight": null },
+  "sizes": ["s", "m", "l"],
+  "rules": { "decorativeByDefault": true, "color": "currentColor", "stroke": null },
+  "icons": [
+    { "name": "Check", "use": "confirmar, marcado" },
+    { "name": "Minus", "use": "indeterminado" },
+    { "name": "X", "use": "cerrar, descartar" },
+    { "name": "Search", "use": "buscar" }
+  ]
+}

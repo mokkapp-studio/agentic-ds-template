@@ -1,0 +1,4 @@
+{
+  "$schema": "../schemas/tokens.schema.json",
+  "$description": "Capa de COMPONENTE (opcional): solo si el Figma la tiene. Solo referencia semánticos. Ej.: button.fill.default → {color.fill.brand}."
+}

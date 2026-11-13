@@ -1,0 +1,96 @@
+{
+  "$schema": "../../../../contract.schema.json",
+  "name": "Button",
+  "version": "1.0.0",
+  "status": "stable",
+  "category": "action",
+  "figma": {
+    "url": "https://www.figma.com/design/FIXTURE/fixture?node-id=1-2",
+    "node": "1:2",
+    "componentKey": "fixture-button",
+    "variantCount": 36,
+    "description": "Botón para acciones.",
+    "properties": [
+      { "name": "Variant", "type": "VARIANT", "values": ["Solid", "Soft", "Ghost"], "default": "Solid", "class": "prop", "mapsTo": "props.variant" },
+      { "name": "Tone", "type": "VARIANT", "values": ["Brand", "Danger"], "default": "Brand", "class": "prop", "mapsTo": "props.tone" },
+      { "name": "Size", "type": "VARIANT", "values": ["S", "M", "L"], "default": "M", "class": "prop", "mapsTo": "props.size" },
+      { "name": "State", "type": "VARIANT", "values": ["Default", "Hover", "Pressed", "Focus", "Disabled"], "default": "Default", "class": "interaction", "mapsTo": "states.hover" },
+      { "name": "Disabled", "type": "BOOLEAN", "default": false, "class": "declared", "mapsTo": "states.disabled" },
+      { "name": "Label", "type": "TEXT", "default": "Button", "class": "content", "mapsTo": "props.label" },
+      { "name": "Show icon", "type": "BOOLEAN", "default": false, "class": "content", "mapsTo": "anatomy.icon" },
+      { "name": "Icon", "type": "INSTANCE_SWAP", "class": "content", "mapsTo": "props.icon" },
+      { "name": "Show redlines", "type": "BOOLEAN", "default": false, "class": "figma-only", "mapsTo": null, "figmaOnly": true }
+    ]
+  },
+  "intent": {
+    "purpose": "Ejecuta una acción en la página actual.",
+    "useWhen": ["Enviar un formulario", "Confirmar o cancelar en un diálogo", "Lanzar una acción sobre los datos visibles"],
+    "dontUseFor": [
+      { "case": "Navegar a otra página", "useInstead": "Link", "why": "Un enlace se anuncia y se comporta como enlace (abrir en pestaña nueva, historial)." },
+      { "case": "Activar o desactivar un ajuste", "useInstead": "Switch", "why": "Un ajuste tiene estado; un botón es una acción." }
+    ],
+    "related": ["Link", "Switch"]
+  },
+  "props": [
+    { "name": "variant", "type": "enum", "values": ["solid", "soft", "ghost"], "default": "solid", "required": false, "description": "Énfasis visual.", "figma": { "property": "Variant", "type": "VARIANT", "valueMap": { "Solid": "solid", "Soft": "soft", "Ghost": "ghost" } } },
+    { "name": "tone", "type": "enum", "values": ["brand", "danger"], "default": "brand", "required": false, "description": "Intención de color.", "figma": { "property": "Tone", "type": "VARIANT" } },
+    { "name": "size", "type": "enum", "values": ["s", "m", "l"], "default": "m", "required": false, "description": "Altura y tipografía.", "figma": { "property": "Size", "type": "VARIANT", "valueMap": { "S": "s", "M": "m", "L": "l" } } },
+    { "name": "label", "type": "string", "default": null, "required": true, "description": "Texto visible. Verbo en infinitivo.", "figma": { "property": "Label", "type": "TEXT" } },
+    { "name": "icon", "type": "icon", "default": null, "required": false, "description": "Icono del registro antes del texto.", "figma": { "property": "Icon", "type": "INSTANCE_SWAP" } },
+    { "name": "disabled", "type": "boolean", "default": false, "required": false, "description": "No interactivo.", "figma": { "property": "Disabled", "type": "BOOLEAN" } },
+    { "name": "type", "type": "enum", "values": ["button", "submit", "reset"], "default": "button", "required": false, "description": "Tipo HTML. No existe en Figma.", "figma": null }
+  ],
+  "states": [
+    { "name": "hover", "kind": "interaction", "control": "browser", "css": ":hover", "figma": { "property": "State", "value": "Hover" } },
+    { "name": "pressed", "kind": "interaction", "control": "browser", "css": ":active", "figma": { "property": "State", "value": "Pressed" } },
+    { "name": "focusVisible", "kind": "interaction", "control": "browser", "css": ":focus-visible", "figma": { "property": "State", "value": "Focus" } },
+    { "name": "disabled", "kind": "declared", "control": "consumer", "prop": "disabled", "css": ":disabled", "aria": "disabled", "figma": { "property": "Disabled", "value": true } }
+  ],
+  "anatomy": {
+    "root": {
+      "figmaLayer": "Button",
+      "element": "button",
+      "tokens": { "background": "color.fill.{tone}", "color": "color.text.on-brand", "border-radius": "radius.m", "font": "typography.label", "min-height": "size.control.m" },
+      "when": {
+        "state=hover": { "background": "color.fill.{tone}-hover" },
+        "tone=brand&state=pressed": { "background": "color.fill.brand-pressed" },
+        "variant=soft": { "background": "color.fill.neutral", "color": "color.text.default" },
+        "variant=ghost": { "background": "color.fill.surface", "color": "color.text.default" },
+        "size=s": { "min-height": "size.control.s" },
+        "size=l": { "min-height": "size.control.l" },
+        "state=focusVisible": { "outline-color": "color.border.focus", "outline-width": "border-width.focus" },
+        "state=disabled": { "background": "color.fill.disabled", "color": "color.text.disabled" }
+      }
+    },
+    "icon": { "figmaLayer": "Icon", "element": "svg", "optional": true, "visibleWhen": "icon", "tokens": { "width": "icon.size.s", "height": "icon.size.s" } },
+    "label": { "figmaLayer": "Label", "element": "span", "tokens": {} }
+  },
+  "layout": {
+    "width": { "mode": "hug", "token": null },
+    "height": { "mode": "fixed", "token": "size.control.m" },
+    "autoLayout": { "direction": "horizontal", "align": "center", "gap": "space.s", "padding": { "block": "space.none", "inline": "space.l" } },
+    "responsive": null
+  },
+  "behavior": { "pattern": "button", "element": "button", "events": [{ "name": "press", "payload": null, "when": "Clic, Enter o Espacio." }] },
+  "a11y": {
+    "role": "native",
+    "name": { "from": "content", "required": false },
+    "keyboard": [{ "key": "Enter", "action": "Activa" }, { "key": "Espacio", "action": "Activa" }],
+    "focusVisible": "root",
+    "minTarget": "size.target.min",
+    "contrast": "AA",
+    "notes": ["Si solo lleva icono, usa IconButton (aria-label obligatorio)."]
+  },
+  "content": { "maxLength": 24, "casing": "sentence", "truncation": "none", "voice": "Verbo + objeto: 'Guardar cambios'.", "examples": { "do": ["Guardar cambios"], "dont": ["OK", "Haz clic aquí"] } },
+  "composition": { "forbiddenChildren": ["Button", "Link", "Input"] },
+  "governance": { "owner": "equipo-fixture", "canExtend": ["className para márgenes externos"], "askFirst": ["Nuevos valores de variant o tone", "Cambiar alturas"] },
+  "meta": {
+    "needsReview": [],
+    "provenance": {
+      "props": { "source": "measured", "by": "ds-contract", "at": "2026-01-10", "ref": "1:2" },
+      "intent": { "source": "decided", "by": "equipo-fixture", "at": "2026-01-12", "ref": null },
+      "props.type": { "source": "decided", "by": "equipo-fixture", "at": "2026-01-12", "ref": "ADR 0100" }
+    },
+    "code": null
+  }
+}

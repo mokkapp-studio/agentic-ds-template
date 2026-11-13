@@ -1,0 +1,41 @@
+{
+  "$schema": "../../../../contract.schema.json",
+  "name": "Tabs",
+  "version": "0.1.0",
+  "status": "review",
+  "category": "navigation",
+  "figma": {
+    "url": "https://www.figma.com/design/FIXTURE/fixture?node-id=5-1", "node": "5:1", "componentKey": "fixture-tabs", "variantCount": 2,
+    "properties": [
+      { "name": "Orientation", "type": "VARIANT", "values": ["Horizontal", "Vertical"], "default": "Horizontal", "class": "prop", "mapsTo": "props.orientation" },
+      { "name": "Items", "type": "SLOT", "class": "content", "mapsTo": "anatomy.list" }
+    ]
+  },
+  "intent": {
+    "purpose": "Alterna entre vistas relacionadas en el mismo espacio.",
+    "useWhen": ["Secciones hermanas de un mismo objeto"],
+    "dontUseFor": [{ "case": "Navegar entre páginas", "useInstead": null, "why": "Eso es navegación, no pestañas." }],
+    "related": ["TabItem"]
+  },
+  "props": [
+    { "name": "orientation", "type": "enum", "values": ["horizontal", "vertical"], "default": "horizontal", "required": false, "description": "Dirección de la lista.", "figma": { "property": "Orientation", "type": "VARIANT" } },
+    { "name": "value", "type": "string", "default": null, "required": false, "description": "Pestaña seleccionada (controlado).", "figma": null },
+    { "name": "defaultValue", "type": "string", "default": null, "required": false, "description": "Pestaña inicial.", "figma": null }
+  ],
+  "states": [{ "name": "selected", "kind": "value", "control": "shared", "prop": "value", "aria": "aria-selected" }],
+  "anatomy": {
+    "root": { "figmaLayer": "Tabs", "element": "div", "tokens": {} },
+    "list": { "figmaLayer": "List", "element": "div", "role": "tablist", "slot": { "accepts": ["TabItem"], "min": 2, "max": null, "prop": null }, "tokens": { "gap": "space.xs", "border-color": "color.border.default" } },
+    "panel": { "figmaLayer": "Panel", "element": "div", "role": "tabpanel", "tokens": { "padding-block": "space.l" } }
+  },
+  "layout": { "width": { "mode": "fill", "token": null }, "height": { "mode": "hug", "token": null }, "autoLayout": { "direction": "vertical", "align": "stretch", "gap": "space.none", "padding": null }, "responsive": null },
+  "behavior": { "pattern": "tabs", "element": "div", "events": [{ "name": "change", "payload": "string", "when": "Al seleccionar otra pestaña." }] },
+  "a11y": {
+    "role": "tablist", "name": { "from": "aria-label", "required": false },
+    "keyboard": [{ "key": "Flecha izq./dcha.", "action": "Mueve el foco y selecciona" }, { "key": "Inicio / Fin", "action": "Primera / última" }],
+    "focusVisible": "list", "minTarget": "size.target.min", "contrast": "AA"
+  },
+  "collection": { "items": ["TabItem"], "selection": { "cardinality": "single", "required": true, "initial": "first" }, "navigation": { "orientation": "horizontal", "wrap": true, "homeEnd": true, "typeahead": false, "followsFocus": true, "rovingFocus": true } },
+  "governance": { "owner": "equipo-fixture", "canExtend": [], "askFirst": [] },
+  "meta": { "needsReview": [], "provenance": {}, "code": null }
+}

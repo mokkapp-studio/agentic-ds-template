@@ -1,0 +1,47 @@
+{
+  "$schema": "../../../../contract.schema.json",
+  "name": "Card",
+  "version": "0.2.0",
+  "status": "review",
+  "category": "layout",
+  "figma": {
+    "url": "https://www.figma.com/design/FIXTURE/fixture?node-id=4-1", "node": "4:1", "componentKey": "fixture-card", "variantCount": 4,
+    "properties": [
+      { "name": "Elevated", "type": "BOOLEAN", "default": false, "class": "prop", "mapsTo": "props.elevated" },
+      { "name": "Breakpoint", "type": "VARIANT", "values": ["Desktop", "Mobile"], "default": "Desktop", "class": "responsive", "mapsTo": "layout.responsive" },
+      { "name": "Mode", "type": "VARIANT", "values": ["Light", "Dark"], "default": "Light", "class": "mode", "mapsTo": "tokens/themes" },
+      { "name": "Media", "type": "SLOT", "class": "content", "mapsTo": "anatomy.media" },
+      { "name": "Content", "type": "SLOT", "class": "content", "mapsTo": "anatomy.body" },
+      { "name": "Actions", "type": "SLOT", "class": "content", "mapsTo": "anatomy.actions" }
+    ]
+  },
+  "intent": {
+    "purpose": "Agrupa contenido relacionado sobre una superficie.",
+    "useWhen": ["Resumen de un elemento en una rejilla", "Bloque autónomo con título y acciones"],
+    "dontUseFor": [{ "case": "Toda la tarjeta clicable con acciones dentro", "useInstead": null, "why": "Anida controles interactivos. Decídelo en un ADR." }],
+    "related": ["Button"]
+  },
+  "props": [
+    { "name": "elevated", "type": "boolean", "default": false, "required": false, "description": "Con sombra.", "figma": { "property": "Elevated", "type": "BOOLEAN" } },
+    { "name": "as", "type": "enum", "values": ["article", "section", "div"], "default": "article", "required": false, "description": "Elemento semántico.", "figma": null },
+    { "name": "media", "type": "node", "default": null, "required": false, "description": "Imagen superior.", "figma": { "property": "Media", "type": "SLOT" } },
+    { "name": "actions", "type": "node", "default": null, "required": false, "description": "Botones al pie.", "figma": { "property": "Actions", "type": "SLOT" } }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": { "figmaLayer": "Card", "element": "article", "tokens": { "background": "color.fill.surface", "border-color": "color.border.default", "border-width": "border-width.default", "border-radius": "radius.m" }, "when": { "elevated=true": { "box-shadow": "shadow.overlay" } } },
+    "media": { "figmaLayer": "Media", "element": "div", "optional": true, "visibleWhen": "media", "slot": { "accepts": ["any"], "min": 0, "max": 1, "prop": "media" }, "tokens": {} },
+    "body": { "figmaLayer": "Content", "element": "div", "slot": { "accepts": ["any"], "min": 1, "max": null, "prop": null }, "tokens": { "padding-inline": "space.l", "padding-block": "space.l", "gap": "space.s" } },
+    "actions": { "figmaLayer": "Actions", "element": "div", "optional": true, "visibleWhen": "actions", "slot": { "accepts": ["Button"], "min": 0, "max": 3, "prop": "actions" }, "tokens": { "gap": "space.s" } }
+  },
+  "layout": {
+    "width": { "mode": "fill", "token": null }, "height": { "mode": "hug", "token": null },
+    "autoLayout": { "direction": "vertical", "align": "stretch", "gap": "space.none", "padding": null },
+    "responsive": [{ "breakpoint": "mobile", "changes": "actions pasa a vertical y ocupa todo el ancho" }]
+  },
+  "behavior": { "pattern": null, "element": "article", "events": [] },
+  "a11y": { "role": "article", "name": { "from": "aria-labelledby", "required": false }, "keyboard": [], "focusVisible": null, "minTarget": null, "contrast": "AA", "notes": ["Sin patrón interactivo: los controles de dentro llevan su propio foco."] },
+  "composition": { "nested": [{ "part": "actions", "component": "Button", "fixedProps": { "size": "s" } }], "forbiddenChildren": ["Card"] },
+  "governance": { "owner": "equipo-fixture", "canExtend": ["Cualquier contenido en body"], "askFirst": ["Card clicable"] },
+  "meta": { "needsReview": [], "provenance": { "anatomy": { "source": "measured", "by": "ds-contract", "at": "2026-01-10", "ref": "4:1" }, "intent": { "source": "decided", "by": "equipo-fixture", "at": "2026-01-12", "ref": null } }, "code": null }
+}

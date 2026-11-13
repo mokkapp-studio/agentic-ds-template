@@ -1,0 +1,68 @@
+{
+  "$schema": "../../../../contract.schema.json",
+  "name": "Checkbox",
+  "version": "0.2.0",
+  "status": "review",
+  "category": "form",
+  "figma": {
+    "url": "https://www.figma.com/design/FIXTURE/fixture?node-id=2-1", "node": "2:1", "componentKey": "fixture-checkbox", "variantCount": 12,
+    "properties": [
+      { "name": "Checked", "type": "VARIANT", "values": ["False", "True", "Indeterminate"], "default": "False", "class": "declared", "mapsTo": "states.checked" },
+      { "name": "State", "type": "VARIANT", "values": ["Default", "Hover", "Focus"], "default": "Default", "class": "interaction", "mapsTo": "states.hover" },
+      { "name": "Disabled", "type": "BOOLEAN", "default": false, "class": "declared", "mapsTo": "states.disabled" },
+      { "name": "Invalid", "type": "BOOLEAN", "default": false, "class": "declared", "mapsTo": "states.invalid" },
+      { "name": "Label", "type": "TEXT", "default": "Label", "class": "content", "mapsTo": "props.label" }
+    ]
+  },
+  "intent": {
+    "purpose": "Marca o desmarca una opción independiente.",
+    "useWhen": ["Aceptar condiciones", "Elegir varias opciones de una lista"],
+    "dontUseFor": [{ "case": "Elegir una sola opción entre varias", "useInstead": "RadioGroup", "why": "La selección única es un radio." }, { "case": "Un ajuste que se aplica al momento", "useInstead": "Switch", "why": null }],
+    "related": ["Switch", "RadioGroup"]
+  },
+  "props": [
+    { "name": "checked", "type": "enum", "values": [false, true, "mixed"], "default": false, "required": false, "description": "Valor controlado. 'mixed' = indeterminado.", "figma": { "property": "Checked", "type": "VARIANT", "valueMap": { "False": false, "True": true, "Indeterminate": "mixed" } } },
+    { "name": "defaultChecked", "type": "boolean", "default": false, "required": false, "description": "Valor inicial no controlado.", "figma": null },
+    { "name": "label", "type": "string", "default": null, "required": true, "description": "Etiqueta visible.", "figma": { "property": "Label", "type": "TEXT" } },
+    { "name": "disabled", "type": "boolean", "default": false, "required": false, "description": "No interactivo.", "figma": { "property": "Disabled", "type": "BOOLEAN" } },
+    { "name": "invalid", "type": "boolean", "default": false, "required": false, "description": "Valor no válido.", "figma": { "property": "Invalid", "type": "BOOLEAN" } },
+    { "name": "name", "type": "string", "default": null, "required": false, "description": "Nombre en el formulario.", "figma": null },
+    { "name": "value", "type": "string", "default": "on", "required": false, "description": "Valor enviado si está marcado.", "figma": null }
+  ],
+  "states": [
+    { "name": "checked", "kind": "value", "control": "shared", "values": [false, true, "mixed"], "default": false, "prop": "checked", "css": "[data-checked]", "aria": "aria-checked", "figma": { "property": "Checked", "value": "True" } },
+    { "name": "hover", "kind": "interaction", "control": "browser", "css": ":hover", "figma": { "property": "State", "value": "Hover" } },
+    { "name": "focusVisible", "kind": "interaction", "control": "browser", "css": ":focus-visible", "figma": { "property": "State", "value": "Focus" } },
+    { "name": "disabled", "kind": "declared", "control": "consumer", "prop": "disabled", "css": "[data-disabled]", "aria": "disabled", "figma": { "property": "Disabled", "value": true } },
+    { "name": "invalid", "kind": "declared", "control": "consumer", "prop": "invalid", "css": "[data-invalid]", "aria": "aria-invalid", "figma": { "property": "Invalid", "value": true } }
+  ],
+  "anatomy": {
+    "root": { "figmaLayer": "Checkbox", "element": "label", "tokens": { "gap": "space.s", "font": "typography.body", "color": "color.text.default" }, "when": { "state=disabled": { "color": "color.text.disabled" } } },
+    "input": { "figmaLayer": null, "element": "input", "codeOnly": true, "description": "input[type=checkbox] nativo, visualmente oculto.", "tokens": {} },
+    "control": {
+      "figmaLayer": "Box", "element": "span",
+      "tokens": { "width": "size.checkbox", "height": "size.checkbox", "border-radius": "radius.s", "border-color": "color.border.strong", "border-width": "border-width.default", "background": "color.fill.surface" },
+      "when": {
+        "state=hover": { "border-color": "color.border.focus" },
+        "state=checked": { "background": "color.fill.brand", "border-color": "color.fill.brand" },
+        "state=invalid": { "border-color": "color.border.danger" },
+        "state=focusVisible": { "outline-color": "color.border.focus", "outline-width": "border-width.focus" },
+        "state=disabled": { "background": "color.fill.disabled", "border-color": "color.border.disabled" }
+      }
+    },
+    "indicator": { "figmaLayer": "Check", "element": "svg", "parent": "control", "optional": true, "visibleWhen": "state=checked", "tokens": { "color": "color.text.on-brand" } },
+    "label": { "figmaLayer": "Label", "element": "span", "tokens": {} }
+  },
+  "layout": { "width": { "mode": "hug", "token": null }, "height": { "mode": "hug", "token": null, "min": "size.target.min" }, "autoLayout": { "direction": "horizontal", "align": "center", "gap": "space.s", "padding": null }, "responsive": null },
+  "behavior": { "pattern": "checkbox", "element": "input", "events": [{ "name": "change", "payload": "boolean | 'mixed'", "when": "Al marcar o desmarcar." }] },
+  "a11y": {
+    "role": "native", "name": { "from": "label-part", "required": true },
+    "keyboard": [{ "key": "Espacio", "action": "Alterna" }],
+    "focusVisible": "control", "minTarget": "size.target.min", "contrast": "AA",
+    "notes": ["indeterminate se pone por JS: input.indeterminate = true.", "El icono Check o Minus sale del registro."]
+  },
+  "form": { "value": { "type": "boolean-mixed", "control": "both" }, "nativeInput": "input[type=checkbox]", "label": "label", "description": null, "error": null, "required": true, "validation": ["required"], "submitsAs": "value si está marcado" },
+  "composition": { "nested": [{ "part": "indicator", "component": "Icon", "fixedProps": { "size": "s" } }] },
+  "governance": { "owner": "equipo-fixture", "canExtend": [], "askFirst": ["Tamaños nuevos"] },
+  "meta": { "needsReview": [], "provenance": { "props": { "source": "measured", "by": "ds-contract", "at": "2026-01-10", "ref": "2:1" }, "intent": { "source": "decided", "by": "equipo-fixture", "at": "2026-01-12", "ref": null } }, "code": null }
+}

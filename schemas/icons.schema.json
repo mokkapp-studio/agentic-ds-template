@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "icons/registry.json",
+  "description": "Registro de iconos. Solo los iconos que usa el sistema. Ningún componente importa la librería: todo pasa por el componente Icon.",
+  "type": "object",
+  "required": ["library", "naming", "defaults", "sizes", "rules", "icons"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "library": { "type": "string", "enum": ["lucide", "phosphor", "tabler", "heroicons", "material-symbols", "remix", "custom-figma"] },
+    "package": { "type": ["string", "null"], "description": "Paquete npm, p. ej. lucide-react. null si custom-figma." },
+    "version": { "type": ["string", "null"] },
+    "docs": { "type": ["string", "null"] },
+    "naming": { "type": "string", "enum": ["PascalCase", "kebab-case"] },
+    "defaults": {
+      "type": "object",
+      "required": ["size"],
+      "additionalProperties": false,
+      "properties": {
+        "size": { "type": ["string", "null"], "description": "Token de tamaño por defecto, p. ej. icon.size.m" },
+        "strokeWidth": { "type": ["number", "string", "null"] },
+        "weight": { "type": ["string", "null"], "description": "Solo librerías con pesos (phosphor, material-symbols)." }
+      }
+    },
+    "sizes": { "type": "array", "items": { "type": "string" }, "description": "Nombres de tamaño; cada uno es un token icon.size.<nombre>." },
+    "rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "decorativeByDefault": { "type": "boolean" },
+        "color": { "type": "string", "description": "Normalmente currentColor: el icono hereda el color del texto." },
+        "stroke": { "type": ["string", "null"] }
+      }
+    },
+    "icons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "use"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "use": { "type": "string", "description": "Para qué se usa: añadir, cerrar, buscar…" },
+          "source": { "type": ["string", "null"], "description": "Nombre en la librería si difiere de name." },
+          "figma": {
+            "type": ["object", "null"],
+            "additionalProperties": false,
+            "properties": { "component": { "type": ["string", "null"] }, "key": { "type": ["string", "null"] } }
+          }
+        }
+      }
+    }
+  }
+}

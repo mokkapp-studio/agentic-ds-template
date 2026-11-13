@@ -1,0 +1,29 @@
+{
+  "$schema": "../schemas/vocabulary.schema.json",
+  "props": {
+    "variant": { "meaning": "Énfasis visual o jerarquía (primary, secondary…).", "avoid": ["kind", "appearance", "emphasis"] },
+    "size": { "meaning": "Escala de tamaño.", "values": ["s", "m", "l"], "avoid": ["scale", "dimension", "sz"] },
+    "tone": { "meaning": "Intención semántica de color (neutral, brand, danger, success, warning, info).", "avoid": ["color", "intent", "status", "severity"] },
+    "disabled": { "meaning": "No interactivo y no enfocable (o aria-disabled si debe seguir enfocable).", "avoid": ["isDisabled", "inactive"] },
+    "label": { "meaning": "Texto visible principal.", "avoid": ["text", "caption"] },
+    "description": { "meaning": "Texto de ayuda bajo la etiqueta.", "avoid": ["helper", "hint", "helperText"] },
+    "icon": { "meaning": "Icono del registro.", "avoid": ["glyph", "symbol"] }
+  },
+  "states": {
+    "hover": { "meaning": "Puntero encima. CSS :hover." },
+    "focusVisible": { "meaning": "Foco por teclado. CSS :focus-visible.", "avoid": ["focus", "focused"] },
+    "pressed": { "meaning": "Pulsado en este momento. CSS :active.", "avoid": ["active", "down"] },
+    "disabled": { "meaning": "Declarado por el consumidor." },
+    "invalid": { "meaning": "Valor no válido. aria-invalid.", "avoid": ["error", "hasError"] },
+    "checked": { "meaning": "Marcado (checkbox, switch, radio).", "avoid": ["on", "isChecked"] },
+    "selected": { "meaning": "Elegido dentro de una colección (tabs, listbox).", "avoid": ["active", "current"] },
+    "expanded": { "meaning": "Abierto (accordion, disclosure).", "avoid": ["collapsed", "isExpanded"] },
+    "open": { "meaning": "Capa visible (dialog, popover, menu).", "avoid": ["visible", "shown", "isOpen"] }
+  },
+  "events": {
+    "press": { "meaning": "Activación con puntero, teclado o lector.", "avoid": ["click", "tap"] },
+    "change": { "meaning": "Cambio de valor confirmado." , "avoid": ["update", "input"] },
+    "openChange": { "meaning": "Se abre o se cierra una capa.", "avoid": ["toggle", "visibilityChange"] },
+    "dismiss": { "meaning": "El usuario descarta (Esc, fuera, cerrar).", "avoid": ["close", "cancel"] }
+  }
+}

@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+.claude/settings.local.json
+.ai/memory/*.local.md
+schemas/fixtures/tokens/build/
+schemas/fixtures/docs/
+schemas/fixtures/llms.txt

@@ -1,0 +1,26 @@
+{
+  "$schema": "./schemas/ds-config.schema.json",
+  "name": null,
+  "prefix": null,
+  "language": "es",
+  "owner": null,
+  "figma": {
+    "fileUrl": null,
+    "fileKey": null,
+    "bridge": null
+  },
+  "stack": {
+    "framework": "react",
+    "language": "typescript",
+    "styling": "css-modules",
+    "headless": "native"
+  },
+  "modes": ["light"],
+  "paths": {
+    "tokens": "tokens",
+    "icons": "icons",
+    "contracts": "contracts/components",
+    "code": "src/components",
+    "docs": "docs"
+  }
+}

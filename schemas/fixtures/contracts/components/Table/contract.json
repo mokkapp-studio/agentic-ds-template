@@ -1,0 +1,39 @@
+{
+  "$schema": "../../../../contract.schema.json",
+  "name": "Table",
+  "version": "0.1.0",
+  "status": "draft",
+  "category": "data-display",
+  "figma": {
+    "url": "https://www.figma.com/design/FIXTURE/fixture?node-id=8-1", "node": "8:1", "componentKey": "fixture-table", "variantCount": 2,
+    "properties": [{ "name": "Density", "type": "VARIANT", "values": ["Comfortable", "Compact"], "default": "Comfortable", "class": "prop", "mapsTo": "props.density" }]
+  },
+  "intent": { "purpose": "Muestra datos tabulares comparables por filas y columnas.", "useWhen": [], "dontUseFor": [], "related": [] },
+  "props": [
+    { "name": "density", "type": "enum", "values": ["comfortable", "compact"], "default": "comfortable", "required": false, "description": "Alto de fila.", "figma": { "property": "Density", "type": "VARIANT" } },
+    { "name": "columns", "type": "array", "default": null, "required": true, "description": "Definición de columnas.", "figma": null },
+    { "name": "rows", "type": "array", "default": null, "required": true, "description": "Datos.", "figma": null }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": { "figmaLayer": "Table", "element": "table", "tokens": { "border-color": "color.border.default", "border-radius": null } },
+    "header": { "figmaLayer": "Header", "element": "thead", "tokens": { "background": "color.fill.surface-subtle", "font": "typography.label" } },
+    "row": { "figmaLayer": "Row", "element": "tr", "tokens": { "min-height": "size.control.l" }, "when": { "density=compact": { "min-height": "size.control.m" } } },
+    "cell": { "figmaLayer": "Cell", "element": "td", "parent": "row", "tokens": { "padding-inline": "space.m", "font": "typography.body" } },
+    "empty": { "figmaLayer": null, "element": "div", "optional": true, "visibleWhen": "rows", "tokens": {} }
+  },
+  "layout": { "width": { "mode": "fill", "token": null }, "height": { "mode": "hug", "token": null }, "autoLayout": null, "responsive": null },
+  "behavior": { "pattern": "table", "element": "table", "events": [{ "name": "sortChange", "payload": "{column, direction}", "when": "Al ordenar." }] },
+  "a11y": { "role": "native", "name": null, "keyboard": [], "focusVisible": null, "minTarget": null, "contrast": "AA" },
+  "data": { "columns": "prop", "sortable": true, "selectable": "none", "empty": "empty", "loading": null, "pagination": null },
+  "governance": { "owner": null, "canExtend": [], "askFirst": [] },
+  "meta": {
+    "needsReview": [
+      { "path": "anatomy.root.tokens.border-radius", "reason": "En Figma el radio es 6, sin variable.", "question": "¿Usamos radius.s (4) o radius.m (8)?" },
+      { "path": "a11y.name", "reason": "Figma no tiene caption.", "question": "¿La tabla lleva caption visible o aria-label?" },
+      { "path": "data.loading", "reason": "No hay estado de carga en Figma.", "question": null }
+    ],
+    "provenance": { "intent": { "source": "inferred", "by": "ds-contract", "at": "2026-01-10", "ref": "8:1" } },
+    "code": null
+  }
+}

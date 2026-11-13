@@ -1,0 +1,40 @@
+{
+  "$schema": "../../../../contract.schema.json",
+  "name": "TabItem",
+  "version": "0.1.0",
+  "status": "review",
+  "category": "navigation",
+  "figma": {
+    "url": "https://www.figma.com/design/FIXTURE/fixture?node-id=5-9", "node": "5:9", "componentKey": "fixture-tabitem", "variantCount": 6,
+    "properties": [
+      { "name": "Selected", "type": "BOOLEAN", "default": false, "class": "declared", "mapsTo": "states.selected" },
+      { "name": "State", "type": "VARIANT", "values": ["Default", "Hover", "Focus"], "default": "Default", "class": "interaction", "mapsTo": "states.hover" },
+      { "name": "Label", "type": "TEXT", "default": "Tab", "class": "content", "mapsTo": "props.label" }
+    ]
+  },
+  "intent": { "purpose": "Una pestaña dentro de Tabs.", "useWhen": ["Siempre dentro de Tabs"], "dontUseFor": [{ "case": "Fuera de Tabs", "useInstead": "Button", "why": null }], "related": ["Tabs"] },
+  "props": [
+    { "name": "value", "type": "string", "default": null, "required": true, "description": "Identifica la pestaña.", "figma": null },
+    { "name": "label", "type": "string", "default": null, "required": true, "description": "Texto.", "figma": { "property": "Label", "type": "TEXT" } },
+    { "name": "disabled", "type": "boolean", "default": false, "required": false, "description": "No seleccionable.", "figma": null }
+  ],
+  "states": [
+    { "name": "selected", "kind": "value", "control": "shared", "css": "[data-selected]", "aria": "aria-selected", "figma": { "property": "Selected", "value": true } },
+    { "name": "hover", "kind": "interaction", "control": "browser", "css": ":hover", "figma": { "property": "State", "value": "Hover" } },
+    { "name": "focusVisible", "kind": "interaction", "control": "browser", "css": ":focus-visible", "figma": { "property": "State", "value": "Focus" } },
+    { "name": "disabled", "kind": "declared", "control": "consumer", "prop": "disabled", "css": "[data-disabled]", "aria": "aria-disabled" }
+  ],
+  "anatomy": {
+    "root": {
+      "figmaLayer": "Tab", "element": "button", "role": "tab",
+      "tokens": { "color": "color.text.subtle", "font": "typography.label", "padding-inline": "space.m", "min-height": "size.control.m" },
+      "when": { "state=hover": { "color": "color.text.default" }, "state=selected": { "color": "color.text.default", "border-color": "color.border.focus" }, "state=disabled": { "color": "color.text.disabled" } }
+    }
+  },
+  "layout": { "width": { "mode": "hug", "token": null }, "height": { "mode": "fixed", "token": "size.control.m" }, "autoLayout": { "direction": "horizontal", "align": "center", "gap": "space.xs", "padding": { "block": "space.none", "inline": "space.m" } }, "responsive": null },
+  "behavior": { "pattern": "tabs", "element": "button", "events": [] },
+  "a11y": { "role": "tab", "name": { "from": "content", "required": true }, "keyboard": [{ "key": "Ver Tabs", "action": "La navegación la gestiona el padre" }], "focusVisible": "root", "minTarget": "size.target.min", "contrast": "AA" },
+  "member": { "of": "Tabs", "identity": "value", "reflects": ["selected", "disabled"] },
+  "governance": { "owner": "equipo-fixture", "canExtend": [], "askFirst": [] },
+  "meta": { "needsReview": [], "provenance": {}, "code": null }
+}

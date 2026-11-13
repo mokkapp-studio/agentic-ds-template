@@ -1,0 +1,23 @@
+{
+  "$schema": "../../tokens.schema.json",
+  "color": {
+    "$type": "color",
+    "purple": { "500": { "$value": "#6E56CF" }, "600": { "$value": "#5B45B8" }, "700": { "$value": "#4A389A" } },
+    "gray": { "0": { "$value": "#FFFFFF" }, "50": { "$value": "#F7F7F8" }, "100": { "$value": "#EDEDEF" }, "300": { "$value": "#C8C8CE" }, "500": { "$value": "#8B8B94" }, "700": { "$value": "#45454D" }, "900": { "$value": "#18181B" }, "950": { "$value": "#0E0E10" } },
+    "red": { "500": { "$value": "#E5484D" }, "300": { "$value": "#F2A6A8" } },
+    "green": { "500": { "$value": "#30A46C" } },
+    "black-a": { "50": { "$value": "#00000080" } }
+  },
+  "dimension": {
+    "$type": "dimension",
+    "0": { "$value": "0px" }, "1": { "$value": "1px" }, "2": { "$value": "2px" }, "4": { "$value": "4px" }, "8": { "$value": "8px" }, "12": { "$value": "12px" }, "16": { "$value": "16px" },
+    "20": { "$value": "20px" }, "24": { "$value": "24px" }, "32": { "$value": "32px" }, "40": { "$value": "40px" }, "48": { "$value": "48px" }, "480": { "$value": "480px" }, "999": { "$value": "9999px" }
+  },
+  "font": {
+    "family": { "sans": { "$type": "fontFamily", "$value": ["Inter", "system-ui", "sans-serif"] } },
+    "weight": { "$type": "fontWeight", "regular": { "$value": 400 }, "medium": { "$value": 500 }, "semibold": { "$value": 600 } },
+    "size": { "$type": "dimension", "14": { "$value": "14px" }, "16": { "$value": "16px" }, "20": { "$value": "20px" } },
+    "line-height": { "$type": "number", "tight": { "$value": 1.25 }, "normal": { "$value": 1.5 } }
+  },
+  "duration": { "$type": "duration", "500": { "$value": "500ms" }, "5000": { "$value": "5000ms" } }
+}

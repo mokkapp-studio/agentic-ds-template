@@ -1,0 +1,14 @@
+{
+  "$schema": "../schemas/tokens.schema.json",
+  "$description": "Capa SEMÁNTICA: por uso (fill, text, border…). Solo referencia primitivos. Valores del modo por defecto (el primero de ds.config.modes).",
+  "color": {
+    "$type": "color",
+    "fill": {
+      "ejemplo-borrar": {
+        "$value": "{color.ejemplo-borrar.500}",
+        "$description": "Para qué sirve este token.",
+        "$extensions": { "figma": { "variable": "Semantic/color/fill/ejemplo", "collection": "Semantic", "scopes": ["FRAME_FILL", "SHAPE_FILL"] } }
+      }
+    }
+  }
+}

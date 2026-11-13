@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../tokens.schema.json",
+  "color": {
+    "$type": "color",
+    "fill": { "surface": { "$value": "{color.gray.950}" }, "surface-subtle": { "$value": "{color.gray.900}" }, "neutral": { "$value": "{color.gray.700}" } },
+    "text": { "default": { "$value": "{color.gray.50}" }, "subtle": { "$value": "{color.gray.300}" } },
+    "border": { "default": { "$value": "{color.gray.700}" } }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ds.config.json",
+  "description": "Identidad del sistema. La rellena ds-setup. Todas las skills la leen antes de escribir nada.",
+  "type": "object",
+  "required": ["name", "prefix", "language", "figma", "stack", "modes", "paths"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "name": { "type": ["string", "null"], "description": "Nombre del sistema, p. ej. 'Aurora'." },
+    "prefix": { "type": ["string", "null"], "pattern": "^[a-z][a-z0-9]*$", "description": "Prefijo corto para variables CSS: --<prefix>-color-fill-brand." },
+    "language": { "type": "string", "enum": ["es", "en", "pt", "ca", "fr", "it", "de"], "description": "Idioma de la documentación y de los textos de los contratos." },
+    "owner": { "type": ["string", "null"], "description": "Quién aprueba cambios en tokens, contratos y vocabulario." },
+    "figma": {
+      "type": "object",
+      "required": ["fileUrl", "fileKey", "bridge"],
+      "additionalProperties": false,
+      "properties": {
+        "fileUrl": { "type": ["string", "null"] },
+        "fileKey": { "type": ["string", "null"] },
+        "bridge": {
+          "type": ["string", "null"],
+          "enum": ["figma-console", "figma-mcp", "export-json", null],
+          "description": "Cómo se lee Figma. figma-console = Plugin API completa (todas las variables). figma-mcp = MCP oficial (variables por nodo). export-json = archivo exportado con un plugin."
+        }
+      }
+    },
+    "stack": {
+      "type": "object",
+      "required": ["framework", "styling", "headless"],
+      "additionalProperties": false,
+      "properties": {
+        "framework": { "type": "string", "enum": ["react", "vue", "svelte", "angular", "web-components", "html"] },
+        "language": { "type": "string", "enum": ["typescript", "javascript"] },
+        "styling": { "type": "string", "enum": ["css-modules", "css", "scss", "tailwind", "vanilla-extract"] },
+        "headless": { "type": "string", "enum": ["native", "base-ui", "radix", "react-aria", "ark", "headless-ui", "reka", "bits-ui"], "description": "native = HTML + ARIA a mano siguiendo el patrón APG del contrato." }
+      }
+    },
+    "modes": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" }, "description": "El primero es el modo por defecto (:root). El resto va en tokens/themes/<modo>.json." },
+    "paths": {
+      "type": "object",
+      "required": ["tokens", "icons", "contracts", "code", "docs"],
+      "additionalProperties": false,
+      "properties": {
+        "tokens": { "type": "string" }, "icons": { "type": "string" }, "contracts": { "type": "string" }, "code": { "type": "string" }, "docs": { "type": "string" }
+      }
+    }
+  }
+}

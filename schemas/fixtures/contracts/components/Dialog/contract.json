@@ -1,0 +1,50 @@
+{
+  "$schema": "../../../../contract.schema.json",
+  "name": "Dialog",
+  "version": "0.1.0",
+  "status": "review",
+  "category": "overlay",
+  "figma": {
+    "url": "https://www.figma.com/design/FIXTURE/fixture?node-id=6-1", "node": "6:1", "componentKey": "fixture-dialog", "variantCount": 2,
+    "properties": [
+      { "name": "Size", "type": "VARIANT", "values": ["M", "L"], "default": "M", "class": "prop", "mapsTo": "props.size" },
+      { "name": "Title", "type": "TEXT", "default": "Title", "class": "content", "mapsTo": "props.title" },
+      { "name": "Content", "type": "SLOT", "class": "content", "mapsTo": "anatomy.body" },
+      { "name": "Footer", "type": "SLOT", "class": "content", "mapsTo": "anatomy.footer" }
+    ]
+  },
+  "intent": {
+    "purpose": "Interrumpe para pedir una decisión o mostrar una tarea corta, bloqueando la página.",
+    "useWhen": ["Confirmar una acción destructiva", "Formulario corto que no merece página"],
+    "dontUseFor": [{ "case": "Mensajes que no requieren acción", "useInstead": null, "why": "Usa un aviso en línea o un toast." }],
+    "related": ["Button"]
+  },
+  "props": [
+    { "name": "open", "type": "boolean", "default": false, "required": false, "description": "Controlado.", "figma": null },
+    { "name": "defaultOpen", "type": "boolean", "default": false, "required": false, "description": "No controlado.", "figma": null },
+    { "name": "size", "type": "enum", "values": ["m", "l"], "default": "m", "required": false, "description": "Ancho máximo.", "figma": { "property": "Size", "type": "VARIANT" } },
+    { "name": "title", "type": "string", "default": null, "required": true, "description": "Título: es el nombre accesible.", "figma": { "property": "Title", "type": "TEXT" } }
+  ],
+  "states": [{ "name": "open", "kind": "value", "control": "shared", "prop": "open", "css": "[data-open]", "aria": "aria-modal" }],
+  "anatomy": {
+    "root": { "figmaLayer": null, "element": "div", "codeOnly": true, "description": "Portal.", "tokens": {} },
+    "backdrop": { "figmaLayer": "Scrim", "element": "div", "tokens": { "background": "color.fill.scrim" } },
+    "popup": { "figmaLayer": "Dialog", "element": "div", "role": "dialog", "tokens": { "background": "color.fill.surface", "border-radius": "radius.m", "box-shadow": "shadow.overlay", "max-width": "size.dialog", "padding-inline": "space.xl", "padding-block": "space.xl" } },
+    "title": { "figmaLayer": "Title", "element": "h2", "parent": "popup", "tokens": { "font": "typography.title", "color": "color.text.default" } },
+    "body": { "figmaLayer": "Content", "element": "div", "parent": "popup", "slot": { "accepts": ["any"], "min": 1, "max": null, "prop": null }, "tokens": { "font": "typography.body" } },
+    "footer": { "figmaLayer": "Footer", "element": "div", "parent": "popup", "optional": true, "slot": { "accepts": ["Button"], "min": 0, "max": 3, "prop": "footer" }, "tokens": { "gap": "space.s" } },
+    "close": { "figmaLayer": "Close", "element": "button", "parent": "popup", "tokens": { "color": "color.text.subtle" } }
+  },
+  "layout": { "width": { "mode": "fixed", "token": "size.dialog" }, "height": { "mode": "hug", "token": null }, "autoLayout": { "direction": "vertical", "align": "stretch", "gap": "space.l", "padding": { "block": "space.xl", "inline": "space.xl" } }, "responsive": null },
+  "behavior": { "pattern": "dialog-modal", "element": "div", "events": [{ "name": "openChange", "payload": "boolean", "when": "Al abrir o cerrar por cualquier motivo." }] },
+  "a11y": {
+    "role": "dialog", "name": { "from": "title-part", "required": true },
+    "keyboard": [{ "key": "Esc", "action": "Cierra" }, { "key": "Tab / Mayús+Tab", "action": "Cicla dentro del diálogo" }],
+    "focusVisible": "close", "minTarget": "size.target.min", "contrast": "AA"
+  },
+  "overlay": { "trigger": null, "opens": { "on": ["press", "programmatic"] }, "dismisses": { "on": ["escape", "outside-press", "close-part"] }, "modal": true, "focus": { "trap": true, "initial": "close", "return": true }, "placement": "center", "portal": true, "scrollLock": true },
+  "composition": { "nested": [{ "part": "close", "component": "Icon", "fixedProps": { "name": "X" } }], "forbiddenChildren": ["Dialog"] },
+  "testing": { "cases": [{ "name": "Esc cierra", "given": "Diálogo abierto", "expect": "Se cierra y el foco vuelve al trigger" }, { "name": "Trampa de foco", "given": "Foco en el último elemento", "expect": "Tab lleva al primero" }] },
+  "governance": { "owner": "equipo-fixture", "canExtend": [], "askFirst": ["Diálogos sin botón de cerrar"] },
+  "meta": { "needsReview": [], "provenance": {}, "code": null }
+}

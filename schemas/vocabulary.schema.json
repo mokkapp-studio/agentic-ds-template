@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "contracts/vocabulary.json",
+  "description": "Vocabulario común de props, estados y eventos. Una misma idea se llama igual en todos los componentes. 'avoid' son sinónimos prohibidos: check falla si un contrato los usa.",
+  "type": "object",
+  "required": ["props", "states", "events"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "props": { "$ref": "#/$defs/entries" },
+    "states": { "$ref": "#/$defs/entries" },
+    "events": { "$ref": "#/$defs/entries" }
+  },
+  "$defs": {
+    "entries": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z][a-zA-Z0-9]*$": {
+          "type": "object",
+          "required": ["meaning"],
+          "additionalProperties": false,
+          "properties": {
+            "meaning": { "type": "string" },
+            "values": { "type": "array" },
+            "avoid": { "type": "array", "items": { "type": "string" } },
+            "adr": { "type": ["string", "null"] }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

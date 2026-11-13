@@ -1,0 +1,4 @@
+{
+  "$schema": "../../schemas/tokens.schema.json",
+  "$description": "Modo __MODE__: SOLO los tokens semánticos (o de componente) que cambian respecto al modo por defecto. Misma ruta, otro valor."
+}
