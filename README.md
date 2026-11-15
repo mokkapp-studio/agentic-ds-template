@@ -193,3 +193,16 @@ cd <tu-repo>
 npm run check
 claude
 ```
+
+---
+
+## Créditos y licencia
+
+Creado por **Xavier Pascual**. Licencia [MIT](LICENSE): puedes usarlo, copiarlo y adaptarlo, manteniendo el aviso de copyright.
+
+Escrito desde cero, con ideas inspiradas en el trabajo de:
+
+- **Marta Conde** · [Helix Design System](https://github.com/MartaCondeDesign): contratos legibles por máquina, vocabulario común de props y gobernanza del sistema con IA.
+- **Cristian Morales** · Weave Design System template: método de auditoría (medido frente a inferido), ADRs con consecuencias negativas y clasificación de las propiedades de Figma.
+
+No incluye código ni texto de esos proyectos.

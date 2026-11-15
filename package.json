@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "description": "Plantilla agnóstica para llevar un sistema de diseño de Figma a contratos, tokens, código y documentación con skills de IA.",
+  "author": "Xavier Pascual",
+  "license": "MIT",
   "type": "module",
   "engines": { "node": ">=20" },
   "scripts": {
