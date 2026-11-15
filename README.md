@@ -95,7 +95,7 @@ La fase C es un **bucle**: repítela por cada componente.
 |---|---|
 | `ds-spec` | Contrato de un componente que **no existe en Figma**, desde una descripción. Queda `draft` e `inferred` |
 | `ds-figma-build` | Dirección inversa: del contrato a Figma (variantes, capas, variables). Requiere `figma-console` |
-| `ds-handoff` | Cierra la sesión: resume lo hecho y lo pendiente en `.ai/memory/` |
+| `ds-handoff` | Cierra la sesión: resume lo hecho y lo pendiente en `docs/sesiones/` |
 
 ### Requisitos por skill
 
