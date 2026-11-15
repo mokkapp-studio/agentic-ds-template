@@ -45,4 +45,4 @@ En Figma todo es una "variante": `Size`, pero también `State=Hover`, `Breakpoin
 | Alternativa | Por qué no |
 |---|---|
 | 1 variante = 1 prop | APIs infladas, estados de interacción como props |
-| 4 clases (como Weave) | No cubre breakpoints, modos ni propiedades solo de Figma, que aparecen en archivos reales |
+| Solo 4 clases | No cubre breakpoints, modos ni propiedades solo de Figma, que aparecen en archivos reales |

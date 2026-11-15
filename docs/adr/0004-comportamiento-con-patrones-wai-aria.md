@@ -37,5 +37,5 @@ El comportamiento (teclado, foco, roles, abrir y cerrar) no está en Figma. Hay 
 
 | Alternativa | Por qué no |
 |---|---|
-| Primitivas de Base UI (como Weave) | Ata el contrato a una librería de React |
+| Primitivas de una librería headless (p. ej. Base UI) | Ata el contrato a una librería de React |
 | Sin describir comportamiento | La IA lo inventaría en cada generación |
