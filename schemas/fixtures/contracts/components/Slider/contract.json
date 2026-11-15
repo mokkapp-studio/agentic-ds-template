@@ -42,6 +42,5 @@
   },
   "form": { "value": { "type": "number", "control": "both" }, "nativeInput": "input[type=range]", "label": null, "description": null, "error": null, "required": false, "validation": ["min", "max"], "submitsAs": "value" },
   "range": { "min": 0, "max": 100, "step": 1, "pageStep": 10, "orientation": "horizontal", "thumbs": 1, "valueText": "{value}" },
-  "governance": { "owner": "equipo-fixture", "canExtend": [], "askFirst": [] },
-  "meta": { "needsReview": [], "provenance": {}, "code": null }
+  "meta": { "owner": "equipo-fixture", "customization": { "allowed": [], "askOwner": [] }, "needsReview": [], "provenance": {}, "code": null }
 }

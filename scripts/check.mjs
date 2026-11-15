@@ -104,13 +104,13 @@ if (exists(regFile)) {
 
 // ─── 4. Vocabulario ──────────────────────────────────────────────────────────
 const vocFile = path.join(ROOT, 'contracts', 'vocabulary.json');
-const avoid = { props: new Map(), states: new Map(), events: new Map() };
+const replaced = { props: new Map(), states: new Map(), events: new Map() }; // sinónimo → nombre correcto
 if (exists(vocFile)) {
   const { data, errors } = validateFile(S('vocabulary.schema.json'), vocFile);
   errors.forEach((e) => error('contracts/vocabulary.json', e));
-  for (const kind of Object.keys(avoid)) for (const [name, e] of Object.entries(data?.[kind] || {})) for (const a of e.avoid || []) {
-    if (data[kind][a]) error('contracts/vocabulary.json', `${kind}.${name}.avoid incluye "${a}", que es otra entrada del vocabulario`);
-    avoid[kind].set(a, name);
+  for (const kind of Object.keys(replaced)) for (const [name, e] of Object.entries(data?.[kind] || {})) for (const a of e.replaces || []) {
+    if (data[kind][a]) error('contracts/vocabulary.json', `${kind}.${name}.replaces incluye "${a}", que es otra entrada del vocabulario`);
+    replaced[kind].set(a, name);
   }
 }
 
@@ -149,7 +149,7 @@ for (const c of contracts.filter((c) => c.data)) {
   for (const p of props) {
     if (propNames.has(p.name)) error(W, `prop duplicada "${p.name}"`);
     propNames.add(p.name);
-    if (avoid.props.has(p.name)) error(W, `prop "${p.name}": el vocabulario dice usar "${avoid.props.get(p.name)}"`);
+    if (replaced.props.has(p.name)) error(W, `prop "${p.name}": el vocabulario dice usar "${replaced.props.get(p.name)}"`);
     if (p.type === 'enum' && !p.values?.length) error(W, `prop "${p.name}" es enum sin values`);
     if (p.type === 'enum' && p.default !== null && p.values && !p.values.includes(p.default)) error(W, `prop "${p.name}": default "${p.default}" no está en values`);
   }
@@ -158,13 +158,13 @@ for (const c of contracts.filter((c) => c.data)) {
   for (const s of d.states) {
     if (stateNames.has(s.name)) error(W, `estado duplicado "${s.name}"`);
     stateNames.add(s.name);
-    if (avoid.states.has(s.name)) error(W, `estado "${s.name}": el vocabulario dice usar "${avoid.states.get(s.name)}"`);
+    if (replaced.states.has(s.name)) error(W, `estado "${s.name}": el vocabulario dice usar "${replaced.states.get(s.name)}"`);
     if (s.kind === 'interaction' && s.control !== 'browser') error(W, `estado "${s.name}" es de interacción: control debe ser "browser" (se resuelve con CSS, nunca con una prop)`);
     if (s.kind === 'interaction' && s.prop) error(W, `estado "${s.name}" es de interacción y no puede tener prop (ADR 0003)`);
     if (s.kind !== 'interaction' && s.prop && !propNames.has(s.prop)) error(W, `estado "${s.name}" → prop "${s.prop}" no existe`);
     if (s.kind !== 'interaction' && !s.aria && rank >= 1) warn(W, `estado "${s.name}" sin atributo aria`);
   }
-  for (const e of d.behavior.events) if (avoid.events.has(e.name)) error(W, `evento "${e.name}": el vocabulario dice usar "${avoid.events.get(e.name)}"`);
+  for (const e of d.behavior.events) if (replaced.events.has(e.name)) error(W, `evento "${e.name}": el vocabulario dice usar "${replaced.events.get(e.name)}"`);
 
   // Clases de Figma (ADR 0003)
   for (const fp of d.figma.properties) {
@@ -257,10 +257,11 @@ for (const c of contracts.filter((c) => c.data)) {
   if (rank >= 2 && d.status !== 'deprecated') {
     if (d.meta.needsReview.length) error(W, 'status stable: meta.needsReview debe estar vacío');
     if (nullTokens.length) error(W, `status stable: quedan tokens null (${nullTokens.length})`);
-    if (!d.governance.canExtend.length && !d.governance.askFirst.length) error(W, 'status stable: governance vacío');
+    if (!d.meta.owner) error(W, 'status stable: falta meta.owner');
+    if (!d.meta.customization.allowed.length && !d.meta.customization.askOwner.length) error(W, 'status stable: meta.customization vacío');
     if (!d.meta.code && !SELF) error(W, 'status stable: falta meta.code (ejecuta ds-component)');
   }
-  if (d.status === 'deprecated' && !d.governance.deprecation) error(W, 'status deprecated: falta governance.deprecation');
+  if (d.status === 'deprecated' && !d.meta.deprecation) error(W, 'status deprecated: falta meta.deprecation');
   if (d.meta.needsReview.length) info(W, `${d.meta.needsReview.length} punto(s) en needsReview`);
 
   // Código

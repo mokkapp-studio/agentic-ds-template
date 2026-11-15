@@ -5,16 +5,20 @@ description: Configura el sistema de diseño por primera vez - nombre, prefijo, 
 
 # ds-setup · Fase A, paso 1
 
-## Alcance
+| Fase | Paso | Necesita | Después |
+|---|---|---|---|
+| A · Preparar | 1 | — | `ds-figma-audit` |
+
+## Qué hace y qué no
 
 Rellena `ds.config.json` y crea `contracts/vocabulary.json`. **No** lee el diseño todavía (eso es `ds-figma-audit`) ni crea tokens.
 
-## Antes de empezar
+## Qué necesitas
 
 - Lee `ds.config.json` (plantilla vacía) y `schemas/ds-config.schema.json` (qué valores admite cada campo).
 - Si `ds.config.json` ya tiene `name`, **no lo sobrescribas**: enseña lo que hay y pregunta qué cambiar.
 
-## Proceso
+## Pasos
 
 1. **Pregunta, de una vez, lo que no puedas deducir:**
    - Nombre del sistema.
@@ -33,13 +37,13 @@ Rellena `ds.config.json` y crea `contracts/vocabulary.json`. **No** lee el dise�
 6. **Crea el vocabulario:** `npm run new -- vocabulary` (copia `templates/vocabulary.json`). Explica para qué sirve: una idea, un nombre.
 7. `npm run check`.
 
-## Salida
+## Qué entrega
 
 - `ds.config.json` completo.
 - `contracts/vocabulary.json`.
 - Un mensaje con el puente detectado y sus límites, y el siguiente paso: **`ds-figma-audit`**.
 
-## Checklist
+## Cómo comprobarlo
 
 - [ ] `name`, `prefix`, `owner`, `figma.fileUrl`, `figma.fileKey` y `figma.bridge` no son `null`.
 - [ ] `prefix` en minúsculas, sin guiones.

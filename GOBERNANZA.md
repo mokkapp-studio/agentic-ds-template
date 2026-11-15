@@ -48,14 +48,14 @@ Cada versión tiene su entrada en `contracts/components/<Nombre>/CHANGELOG.md`. 
 |---|---|---|
 | `draft` | Recién leído de Figma | Núcleo válido según el esquema. Lo que falta es aviso, no error |
 | `review` | Listo para revisión del dueño | + `intent.purpose` y `useWhen`; `a11y.role` y `name`; teclado y foco si es interactivo; módulos de su patrón; **nada `inferred`** en `meta.provenance` |
-| `stable` | Se puede usar en producto | + `meta.needsReview` vacío, ningún token `null`, `governance` con contenido y `meta.code` existente |
-| `deprecated` | No usar en nuevo código | + `governance.deprecation` (`replacedBy`, `removeIn`, `adr`) |
+| `stable` | Se puede usar en producto | + `meta.needsReview` vacío, ningún token `null`, `meta.owner`, `meta.customization` con contenido y `meta.code` existente |
+| `deprecated` | No usar en nuevo código | + `meta.deprecation` (`replacedBy`, `removeIn`, `adr`) |
 
 Subir de estado lo **propone** la IA y lo **aprueba** el dueño.
 
 ## 6. Vocabulario
 
-`contracts/vocabulary.json` fija un nombre por idea (`size`, no `scale`; `tone`, no `color`; `press`, no `click`). Los `avoid` son sinónimos prohibidos: `check` falla si un contrato los usa. Cambiar el vocabulario requiere ADR.
+`contracts/vocabulary.json` fija un nombre por idea (`size`, no `scale`; `tone`, no `color`; `press`, no `click`). Cada entrada lista en `replaces` los sinónimos a los que sustituye (`check` falla si un contrato los usa) y en `example` cómo se escribe en código. Cambiar el vocabulario requiere ADR.
 
 ## 7. Procedencia
 

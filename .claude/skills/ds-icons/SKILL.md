@@ -5,17 +5,21 @@ description: Añade la librería de iconos del sistema - Lucide, Phosphor, Table
 
 # ds-icons · Fase B, paso 5
 
-## Alcance
+| Fase | Paso | Necesita | Después |
+|---|---|---|---|
+| B · Fundamentos | 5 | tokens `icon.size.*` y ADR de iconos | `ds-contract` |
+
+## Qué hace y qué no
 
 Crea o actualiza `icons/registry.json` y el contrato `Icon`. **Regla del sistema:** ningún componente importa la librería de iconos directamente; todo pasa por `Icon` y el registro.
 
-## Antes de empezar
+## Qué necesitas
 
 - `ds.config.json` (stack) y el ADR de iconos. Si no existe, la elección de librería **es** una decisión: hazla con `ds-decide`.
 - Tokens `icon.size.*`. Si no existen, vuelve a `ds-tokens` (o pregunta los valores).
 - `templates/icons.registry.json` y `schemas/icons.schema.json`. Ejemplo: `schemas/fixtures/icons/registry.json`.
 
-## Proceso
+## Pasos
 
 1. **Detecta qué hay en Figma:** busca instancias de iconos en los component sets (propiedades INSTANCE_SWAP, capas `Icon`).
    - Si los nombres coinciden con una librería conocida, propón esa.
@@ -46,13 +50,13 @@ Crea o actualiza `icons/registry.json` y el contrato `Icon`. **Regla del sistema
 6. **Iconos propios (`custom-figma`):** exporta los SVG a `icons/svg/<name>.svg` con el puente (`figma_get_component_image` en formato svg, o `get_design_context`). Sin color fijo: usa `currentColor`.
 7. Ejecuta `npm run check`.
 
-## Salida
+## Qué entrega
 
 - `icons/registry.json`.
 - `contracts/components/Icon/`.
 - ADR de la librería (`Propuesto` → `Aceptado`).
 
-## Checklist
+## Cómo comprobarlo
 
 - [ ] Cada icono tiene `use`.
 - [ ] `defaults.size` y `sizes` existen como tokens.

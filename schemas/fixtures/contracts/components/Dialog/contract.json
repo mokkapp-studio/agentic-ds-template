@@ -45,6 +45,5 @@
   "overlay": { "trigger": null, "opens": { "on": ["press", "programmatic"] }, "dismisses": { "on": ["escape", "outside-press", "close-part"] }, "modal": true, "focus": { "trap": true, "initial": "close", "return": true }, "placement": "center", "portal": true, "scrollLock": true },
   "composition": { "nested": [{ "part": "close", "component": "Icon", "fixedProps": { "name": "X" } }], "forbiddenChildren": ["Dialog"] },
   "testing": { "cases": [{ "name": "Esc cierra", "given": "Diálogo abierto", "expect": "Se cierra y el foco vuelve al trigger" }, { "name": "Trampa de foco", "given": "Foco en el último elemento", "expect": "Tab lleva al primero" }] },
-  "governance": { "owner": "equipo-fixture", "canExtend": [], "askFirst": ["Diálogos sin botón de cerrar"] },
-  "meta": { "needsReview": [], "provenance": {}, "code": null }
+  "meta": { "owner": "equipo-fixture", "customization": { "allowed": [], "askOwner": ["Diálogos sin botón de cerrar"] }, "needsReview": [], "provenance": {}, "code": null }
 }

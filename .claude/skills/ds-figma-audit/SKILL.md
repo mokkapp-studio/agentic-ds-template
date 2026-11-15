@@ -5,17 +5,21 @@ description: Audita el archivo de Figma antes de generar nada - variables, estil
 
 # ds-figma-audit · Fase A, paso 2
 
-## Alcance
+| Fase | Paso | Necesita | Después |
+|---|---|---|---|
+| A · Preparar | 2 | `ds-setup` | `ds-decide` |
+
+## Qué hace y qué no
 
 **Solo lee y escribe un informe.** No crea tokens, contratos ni ADRs. Su producto son **preguntas**, no decisiones.
 
-## Antes de empezar
+## Qué necesitas
 
 - `ds.config.json`: `figma.fileUrl` y `figma.bridge`. Si `bridge` es `null`, para y ejecuta `ds-setup`.
 - `templates/audit.md`: la estructura del informe.
 - Si hay auditorías previas en `docs/auditoria/`, léelas: esta es la siguiente (número correlativo).
 
-## Proceso
+## Pasos
 
 1. **Crea el informe**: `npm run new -- audit "<nombre del archivo>"`.
 2. **Variables** (sección *Medido*):
@@ -45,13 +49,13 @@ description: Audita el archivo de Figma antes de generar nada - variables, estil
    - ¿Nombres de props en conflicto entre componentes (`Type` vs `Variant`)?
 9. Si sabes algo de **Medido** solo a medias, dilo en *Qué NO se ha leído*. **Nunca rellenes huecos.**
 
-## Salida
+## Qué entrega
 
 - `docs/auditoria/NNNN-<archivo>.md`.
 - Resumen en el chat: 3 hallazgos principales y las preguntas abiertas.
 - Siguiente paso: **`ds-decide`** con esas preguntas.
 
-## Checklist
+## Cómo comprobarlo
 
 - [ ] Cada número de *Medido* sale de una lectura real, no de una estimación.
 - [ ] Cada punto de *Inferido* cita su evidencia.

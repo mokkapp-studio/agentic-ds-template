@@ -35,6 +35,5 @@
   "behavior": { "pattern": "tabs", "element": "button", "events": [] },
   "a11y": { "role": "tab", "name": { "from": "content", "required": true }, "keyboard": [{ "key": "Ver Tabs", "action": "La navegación la gestiona el padre" }], "focusVisible": "root", "minTarget": "size.target.min", "contrast": "AA" },
   "member": { "of": "Tabs", "identity": "value", "reflects": ["selected", "disabled"] },
-  "governance": { "owner": "equipo-fixture", "canExtend": [], "askFirst": [] },
-  "meta": { "needsReview": [], "provenance": {}, "code": null }
+  "meta": { "owner": "equipo-fixture", "customization": { "allowed": [], "askOwner": [] }, "needsReview": [], "provenance": {}, "code": null }
 }

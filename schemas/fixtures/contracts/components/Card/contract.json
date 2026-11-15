@@ -42,6 +42,5 @@
   "behavior": { "pattern": null, "element": "article", "events": [] },
   "a11y": { "role": "article", "name": { "from": "aria-labelledby", "required": false }, "keyboard": [], "focusVisible": null, "minTarget": null, "contrast": "AA", "notes": ["Sin patrón interactivo: los controles de dentro llevan su propio foco."] },
   "composition": { "nested": [{ "part": "actions", "component": "Button", "fixedProps": { "size": "s" } }], "forbiddenChildren": ["Card"] },
-  "governance": { "owner": "equipo-fixture", "canExtend": ["Cualquier contenido en body"], "askFirst": ["Card clicable"] },
-  "meta": { "needsReview": [], "provenance": { "anatomy": { "source": "measured", "by": "ds-contract", "at": "2026-01-10", "ref": "4:1" }, "intent": { "source": "decided", "by": "equipo-fixture", "at": "2026-01-12", "ref": null } }, "code": null }
+  "meta": { "owner": "equipo-fixture", "customization": { "allowed": ["Cualquier contenido en body"], "askOwner": ["Card clicable"] }, "needsReview": [], "provenance": { "anatomy": { "source": "measured", "by": "ds-contract", "at": "2026-01-10", "ref": "4:1" }, "intent": { "source": "decided", "by": "equipo-fixture", "at": "2026-01-12", "ref": null } }, "code": null }
 }

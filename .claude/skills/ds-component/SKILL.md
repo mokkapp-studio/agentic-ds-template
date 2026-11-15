@@ -5,18 +5,22 @@ description: Genera el código de un componente a partir de su contrato, en el s
 
 # ds-component · Fase C, paso 7
 
-## Alcance
+| Fase | Paso | Necesita | Después |
+|---|---|---|---|
+| C · Por componente | 7 | contrato en `review` o `stable` | `npm run docs` y el siguiente contrato |
+
+## Qué hace y qué no
 
 Escribe en `src/components/<nombre-kebab>/`. **El contrato manda**: si para implementar algo hace falta cambiar el contrato, para, propón el cambio (con su versión) y espera.
 
-## Antes de empezar
+## Qué necesitas
 
 - El contrato debe estar en `review` o `stable` (`npm run check` en verde). Si está en `draft`, avisa: generar código de un borrador obliga a rehacerlo.
 - `ds.config.json`: `stack.*` y `prefix`.
 - `tokens/build/tokens.css`: las variables que existen.
 - Contratos de los componentes en `composition.nested`, `collection.items` y `slot.accepts`: genera antes los que falten.
 
-## Proceso
+## Pasos
 
 1. **Estructura**, según el stack. Ejemplo para React + CSS Modules:
    ```
@@ -25,7 +29,7 @@ Escribe en `src/components/<nombre-kebab>/`. **El contrato manda**: si para impl
      Button.module.css
      index.ts
    ```
-2. **API = `props` del contrato, exactamente:** mismos nombres, tipos, valores y defaults. No añadas props. Si el stack lo necesita (`className`, `ref`, `...rest`), usa las convenciones del framework y documéntalo en `governance.canExtend`.
+2. **API = `props` del contrato, exactamente:** mismos nombres, tipos, valores y defaults. No añadas props. Si el stack lo necesita (`className`, `ref`, `...rest`), usa las convenciones del framework y documéntalo en `meta.customization.allowed`.
 3. **Eventos:** `behavior.events` con la convención del stack: `press` → `onPress` en React (o `onClick` si el ADR del stack lo dice), `@press` en Vue.
 4. **Partes:** cada clave de `anatomy` es un elemento `element` con `data-part="<clave>"`. Las partes `optional` solo se renderizan si se cumple `visibleWhen`. Los `slot` reciben su prop o `children`.
 5. **Estados:**
@@ -63,13 +67,13 @@ Escribe en `src/components/<nombre-kebab>/`. **El contrato manda**: si para impl
     - `npm run docs`;
     - si el contrato estaba en `review` y todo lo que pide `GOBERNANZA.md` §5 se cumple, **propón** subirlo a `stable` (lo aprueba el dueño).
 
-## Salida
+## Qué entrega
 
 - `src/components/<nombre>/`.
 - `meta.code` actualizado.
 - La lista de reglas del contrato aplicadas y lo que se ha dejado fuera o queda en duda (AGENTS.md, "Al terminar").
 
-## Checklist
+## Cómo comprobarlo
 
 - [ ] Props idénticas al contrato.
 - [ ] Todas las partes con `data-part`.

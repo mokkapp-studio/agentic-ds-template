@@ -36,6 +36,5 @@
     "focusVisible": "list", "minTarget": "size.target.min", "contrast": "AA"
   },
   "collection": { "items": ["TabItem"], "selection": { "cardinality": "single", "required": true, "initial": "first" }, "navigation": { "orientation": "horizontal", "wrap": true, "homeEnd": true, "typeahead": false, "followsFocus": true, "rovingFocus": true } },
-  "governance": { "owner": "equipo-fixture", "canExtend": [], "askFirst": [] },
-  "meta": { "needsReview": [], "provenance": {}, "code": null }
+  "meta": { "owner": "equipo-fixture", "customization": { "allowed": [], "askOwner": [] }, "needsReview": [], "provenance": {}, "code": null }
 }

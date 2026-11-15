@@ -5,11 +5,15 @@ description: Crea o completa el contrato de un componente (contracts/components/
 
 # ds-contract · Fase C, paso 6 (un componente cada vez)
 
-## Alcance
+| Fase | Paso | Necesita | Después |
+|---|---|---|---|
+| C · Por componente | 6 | tokens (e Icon si usa iconos) | `ds-component` |
+
+## Qué hace y qué no
 
 Escribe `contracts/components/<Nombre>/contract.json` y su `CHANGELOG.md`. **No** escribe código (eso es `ds-component`) ni inventa tokens (si falta uno, `null` + `needsReview`).
 
-## Antes de empezar
+## Qué necesitas
 
 1. `ds.config.json`, `contracts/vocabulary.json` y los ADRs aceptados.
 2. `tokens/build/tokens.json`: los tokens que existen. Si no hay tokens, para y ejecuta `ds-tokens`.
@@ -18,7 +22,7 @@ Escribe `contracts/components/<Nombre>/contract.json` y su `CHANGELOG.md`. **No*
 5. **Un fixture parecido** en `schemas/fixtures/contracts/components/`: Button, Checkbox, TextField, Card, Tabs/TabItem, Dialog, Slider, Icon o Table.
 6. Si el contrato ya existe, **no lo regeneres**: eso es `ds-sync`.
 
-## Proceso
+## Pasos
 
 ### 1. Leer el component set
 Necesitas:
@@ -81,13 +85,13 @@ Copia el auto layout: dirección, gap, padding (tokens), y `width`/`height` con 
 - `npm run docs`.
 - **Presenta al alumno:** los `needsReview` como preguntas y lo `inferred` para confirmar. Cuando lo confirme, cambia `inferred` → `decided` y sube a `review`.
 
-## Salida
+## Qué entrega
 
 - `contracts/components/<Nombre>/contract.json` y `CHANGELOG.md`.
 - `docs/components/<Nombre>.md`.
 - La lista de preguntas pendientes.
 
-## Checklist
+## Cómo comprobarlo
 
 - [ ] Todas las propiedades de Figma están en `figma.properties` con su clase.
 - [ ] Ningún estado de interacción, breakpoint o modo es una prop.

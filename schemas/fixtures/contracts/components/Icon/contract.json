@@ -22,6 +22,5 @@
   "behavior": { "pattern": "img", "element": "svg", "events": [] },
   "a11y": { "role": "img", "name": { "from": "aria-label", "required": false }, "keyboard": [], "focusVisible": null, "minTarget": null, "contrast": "AA", "notes": ["Sin label: aria-hidden=true."] },
   "media": { "source": "registry", "decorative": "prop", "alt": "label", "fallback": null, "sizes": ["s", "m", "l"], "aspectRatio": "1/1" },
-  "governance": { "owner": "equipo-fixture", "canExtend": [], "askFirst": ["Añadir iconos al registro"] },
-  "meta": { "needsReview": [], "provenance": {}, "code": null }
+  "meta": { "owner": "equipo-fixture", "customization": { "allowed": [], "askOwner": ["Añadir iconos al registro"] }, "needsReview": [], "provenance": {}, "code": null }
 }

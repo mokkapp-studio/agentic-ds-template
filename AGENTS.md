@@ -31,7 +31,7 @@ Este repo es un sistema de diseño gobernado por contratos: **el contrato es la 
 
 - **Contrato primero.** Si el código necesita algo que no está en el contrato, se cambia **primero el contrato** (con su `version` y su CHANGELOG) y después el código.
 - **Props:** nombres, tipos, valores y defaults exactamente como en `props`. No añadas props.
-- **Vocabulario:** nunca uses un nombre que esté en un `avoid` del vocabulario.
+- **Vocabulario:** nunca uses un nombre que aparezca en el `replaces` de otra entrada del vocabulario.
 - **Propiedades de Figma:** antes de convertir una propiedad en prop, clasifícala en sus 7 clases (ADR 0003). Hover, focus, breakpoints y modos **nunca** son props.
 - **Estados:** los `interaction` se resuelven con CSS (`:hover`, `:focus-visible`, `:active`). Los `declared` y `value` son props con su atributo `aria`.
 - **Anatomía:** cada clave de `anatomy` es una parte con `data-part="<clave>"`.

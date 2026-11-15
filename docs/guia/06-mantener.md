@@ -18,4 +18,4 @@ Pide: *"Decidamos …"* → `ds-decide`. Reglas en [GOBERNANZA.md](../../GOBERNA
 
 ## Al acabar una sesión
 
-Pide: *"Cerramos por hoy"* → `ds-handoff` resume lo hecho y lo pendiente en `.ai/memory/`.
+Pide: *"Cerramos por hoy"* → `ds-handoff` resume lo hecho y lo pendiente en `docs/sesiones/`.

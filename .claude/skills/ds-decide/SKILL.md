@@ -5,7 +5,11 @@ description: Convierte una pregunta abierta o una decisión estructural en un AD
 
 # ds-decide · Fase A, paso 3 (y cuando haga falta)
 
-## Alcance
+| Fase | Paso | Necesita | Después |
+|---|---|---|---|
+| A · Preparar | 3 | una auditoría o una decisión pendiente | `ds-tokens` |
+
+## Qué hace y qué no
 
 Escribe ADRs. **Cuándo hace falta un ADR** (ver `GOBERNANZA.md` §2):
 
@@ -15,12 +19,12 @@ Escribe ADRs. **Cuándo hace falta un ADR** (ver `GOBERNANZA.md` §2):
 
 Un detalle de un solo componente **no** es un ADR: va en su contrato y su CHANGELOG.
 
-## Antes de empezar
+## Qué necesitas
 
 - `templates/adr.md` y `docs/adr/README.md` (índice). Comprueba que la decisión no exista ya. Si existe y cambia, el ADR nuevo la **reemplaza**.
 - La auditoría más reciente de `docs/auditoria/` (sus preguntas abiertas).
 
-## Proceso
+## Pasos
 
 1. **Una pregunta = un ADR.** No mezcles iconos y modos en el mismo.
 2. **Presenta las opciones** al dueño con pros y contras, y tu recomendación. **No decidas tú**: espera la respuesta.
@@ -36,13 +40,13 @@ Un detalle de un solo componente **no** es un ADR: va en su contrato y su CHANGE
 6. Si la decisión toca el vocabulario (nombres de props, estados o eventos), actualiza `contracts/vocabulary.json` con `"adr": "NNNN"`.
 7. Ejecuta `npm run docs` (regenera el índice) y después `npm run check`.
 
-## Salida
+## Qué entrega
 
 - `docs/adr/NNNN-<slug>.md`.
 - `docs/adr/README.md` actualizado.
 - La pregunta de la auditoría marcada con el número de ADR.
 
-## Checklist
+## Cómo comprobarlo
 
 - [ ] El título es una frase con verbo.
 - [ ] Hay al menos una consecuencia negativa.

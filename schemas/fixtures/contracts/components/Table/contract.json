@@ -26,8 +26,8 @@
   "behavior": { "pattern": "table", "element": "table", "events": [{ "name": "sortChange", "payload": "{column, direction}", "when": "Al ordenar." }] },
   "a11y": { "role": "native", "name": null, "keyboard": [], "focusVisible": null, "minTarget": null, "contrast": "AA" },
   "data": { "columns": "prop", "sortable": true, "selectable": "none", "empty": "empty", "loading": null, "pagination": null },
-  "governance": { "owner": null, "canExtend": [], "askFirst": [] },
   "meta": {
+    "owner": null, "customization": { "allowed": [], "askOwner": [] },
     "needsReview": [
       { "path": "anatomy.root.tokens.border-radius", "reason": "En Figma el radio es 6, sin variable.", "question": "¿Usamos radius.s (4) o radius.m (8)?" },
       { "path": "a11y.name", "reason": "Figma no tiene caption.", "question": "¿La tabla lleva caption visible o aria-label?" },

@@ -14,6 +14,5 @@
   "layout": { "width": null, "height": null, "autoLayout": null, "responsive": null },
   "behavior": { "pattern": null, "element": null, "events": [] },
   "a11y": { "role": null, "name": null, "keyboard": [], "focusVisible": null, "minTarget": null, "contrast": "AA", "notes": [] },
-  "governance": { "owner": null, "canExtend": [], "askFirst": [] },
-  "meta": { "needsReview": [], "provenance": {}, "code": null }
+  "meta": { "owner": null, "customization": { "allowed": [], "askOwner": [] }, "needsReview": [], "provenance": {}, "code": null }
 }

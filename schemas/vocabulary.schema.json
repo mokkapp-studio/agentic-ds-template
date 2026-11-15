@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "contracts/vocabulary.json",
-  "description": "Vocabulario común de props, estados y eventos. Una misma idea se llama igual en todos los componentes. 'avoid' son sinónimos prohibidos: check falla si un contrato los usa.",
+  "description": "Vocabulario común de props, estados y eventos. Una misma idea se llama igual en todos los componentes. 'replaces' lista los sinónimos a los que sustituye este nombre: check falla si un contrato los usa. 'example' muestra el uso en código.",
   "type": "object",
   "required": ["props", "states", "events"],
   "additionalProperties": false,
@@ -22,7 +22,8 @@
           "properties": {
             "meaning": { "type": "string" },
             "values": { "type": "array" },
-            "avoid": { "type": "array", "items": { "type": "string" } },
+            "replaces": { "type": "array", "items": { "type": "string" }, "description": "Sinónimos que este nombre sustituye. No se pueden usar en ningún contrato." },
+            "example": { "type": "string", "description": "Cómo se ve en código." },
             "adr": { "type": ["string", "null"] }
           }
         }

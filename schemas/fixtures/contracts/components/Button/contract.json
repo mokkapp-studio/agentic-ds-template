@@ -83,8 +83,8 @@
   },
   "content": { "maxLength": 24, "casing": "sentence", "truncation": "none", "voice": "Verbo + objeto: 'Guardar cambios'.", "examples": { "do": ["Guardar cambios"], "dont": ["OK", "Haz clic aquí"] } },
   "composition": { "forbiddenChildren": ["Button", "Link", "Input"] },
-  "governance": { "owner": "equipo-fixture", "canExtend": ["className para márgenes externos"], "askFirst": ["Nuevos valores de variant o tone", "Cambiar alturas"] },
   "meta": {
+    "owner": "equipo-fixture", "customization": { "allowed": ["className para márgenes externos"], "askOwner": ["Nuevos valores de variant o tone","Cambiar alturas"] },
     "needsReview": [],
     "provenance": {
       "props": { "source": "measured", "by": "ds-contract", "at": "2026-01-10", "ref": "1:2" },

@@ -3,7 +3,7 @@
   "title": "Contrato de componente",
   "description": "Fuente de verdad de un componente. Núcleo obligatorio + módulos opcionales (form, collection, member, overlay, range, media, data, content, composition, testing). null = se ha mirado y no hay dato o no está decidido (va con una entrada en meta.needsReview). Clave ausente = no se ha mirado.",
   "type": "object",
-  "required": ["name", "version", "status", "category", "figma", "intent", "props", "states", "anatomy", "layout", "behavior", "a11y", "governance", "meta"],
+  "required": ["name", "version", "status", "category", "figma", "intent", "props", "states", "anatomy", "layout", "behavior", "a11y", "meta"],
   "additionalProperties": false,
   "properties": {
     "$schema": { "type": "string" },
@@ -232,23 +232,6 @@
       }
     },
 
-    "governance": {
-      "description": "Qué puede hacer el consumidor sin pedir permiso y qué requiere al dueño. Obligatorio con contenido en stable.",
-      "type": "object",
-      "required": ["canExtend", "askFirst"],
-      "additionalProperties": false,
-      "properties": {
-        "owner": { "type": ["string", "null"] },
-        "canExtend": { "type": "array", "items": { "type": "string" } },
-        "askFirst": { "type": "array", "items": { "type": "string" } },
-        "deprecation": {
-          "type": ["object", "null"],
-          "additionalProperties": false,
-          "properties": { "replacedBy": { "type": ["string", "null"] }, "removeIn": { "type": ["string", "null"] }, "adr": { "type": ["string", "null"] } }
-        }
-      }
-    },
-
     "form": {
       "description": "MÓDULO para controles de formulario: input, textarea, checkbox, switch, radio, select, slider.",
       "type": "object",
@@ -464,9 +447,26 @@
 
     "meta": {
       "type": "object",
-      "required": ["needsReview", "provenance", "code"],
+      "required": ["owner", "customization", "needsReview", "provenance", "code"],
       "additionalProperties": false,
       "properties": {
+        "owner": { "type": ["string", "null"], "description": "Persona o equipo que aprueba cambios en este componente. Obligatorio en stable." },
+        "customization": {
+          "description": "Qué puede adaptar quien usa el componente sin pedir permiso y qué debe consultar al dueño. Con contenido en stable.",
+          "type": "object",
+          "required": ["allowed", "askOwner"],
+          "additionalProperties": false,
+          "properties": {
+            "allowed": { "type": "array", "items": { "type": "string" } },
+            "askOwner": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "deprecation": {
+          "description": "Obligatorio en deprecated.",
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "properties": { "replacedBy": { "type": ["string", "null"] }, "removeIn": { "type": ["string", "null"] }, "adr": { "type": ["string", "null"] } }
+        },
         "needsReview": {
           "type": "array",
           "items": {

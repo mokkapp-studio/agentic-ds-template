@@ -73,6 +73,5 @@
   },
   "form": { "value": { "type": "string", "control": "both" }, "nativeInput": "input[type=text]", "label": "label", "description": "description", "error": "error", "required": true, "validation": ["required", "minLength", "maxLength", "pattern"], "submitsAs": "value" },
   "content": { "maxLength": null, "casing": "sentence", "truncation": "none", "voice": "Etiqueta corta, sin dos puntos." },
-  "governance": { "owner": "equipo-fixture", "canExtend": ["Contenido de prefix y suffix"], "askFirst": ["Tamaños nuevos"] },
-  "meta": { "needsReview": [], "provenance": { "props": { "source": "measured", "by": "ds-contract", "at": "2026-01-10", "ref": "3:1" }, "a11y": { "source": "decided", "by": "equipo-fixture", "at": "2026-01-12", "ref": null } }, "code": null }
+  "meta": { "owner": "equipo-fixture", "customization": { "allowed": ["Contenido de prefix y suffix"], "askOwner": ["Tamaños nuevos"] }, "needsReview": [], "provenance": { "props": { "source": "measured", "by": "ds-contract", "at": "2026-01-10", "ref": "3:1" }, "a11y": { "source": "decided", "by": "equipo-fixture", "at": "2026-01-12", "ref": null } }, "code": null }
 }

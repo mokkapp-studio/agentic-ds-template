@@ -5,18 +5,22 @@ description: Genera los tokens de diseño en formato DTCG desde las variables y 
 
 # ds-tokens · Fase B, paso 4
 
-## Alcance
+| Fase | Paso | Necesita | Después |
+|---|---|---|---|
+| B · Fundamentos | 4 | ADRs de tokens y modos | `ds-icons` |
+
+## Qué hace y qué no
 
 Escribe `tokens/primitive.json`, `tokens/semantic.json`, `tokens/component.json` (opcional) y `tokens/themes/<modo>.json`, y genera `tokens/build/`. No toca contratos.
 
-## Antes de empezar
+## Qué necesitas
 
 - `ds.config.json`: `prefix`, `modes`, `figma.bridge`.
 - ADRs aceptados sobre tokens, modos y escala (`docs/adr/`). Si faltan, **para** y propón `ds-decide`.
 - `templates/tokens.*.json` y `schemas/tokens.schema.json`.
 - **Ejemplo completo:** `schemas/fixtures/tokens/`.
 
-## Proceso
+## Pasos
 
 1. **Lee las variables** según el puente:
    - `figma-console`: `figma_get_variables` (todas, con modos y alias). Para estilos: `figma_get_styles` y `figma_get_text_styles`.
@@ -44,13 +48,13 @@ Escribe `tokens/primitive.json`, `tokens/semantic.json`, `tokens/component.json`
 9. **Ejecuta** `npm run tokens` y después `npm run check`.
 10. **Procedencia:** pon `"$extensions": {"provenance": "inferred"}` en lo que no venga de una variable real.
 
-## Salida
+## Qué entrega
 
 - `tokens/*.json`, `tokens/themes/*.json`, `tokens/build/tokens.css` y `tokens/build/tokens.json`.
 - Resumen: número de tokens por capa, modos, y lo que se ha marcado como `inferred`.
 - Siguiente paso: **`ds-icons`**.
 
-## Checklist
+## Cómo comprobarlo
 
 - [ ] Ningún primitivo referencia a otro token.
 - [ ] Ninguna semántica referencia a otra semántica ni a un token de componente.

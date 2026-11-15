@@ -5,16 +5,20 @@ description: Compara Figma con los tokens y contratos actuales y propone los cam
 
 # ds-sync · Fase D (mantenimiento)
 
-## Alcance
+| Fase | Paso | Necesita | Después |
+|---|---|---|---|
+| D · Mantener | 8 | contratos y tokens existentes | `ds-component` y `npm run docs` |
 
-Detecta diferencias y **propone**. No aplica nada sin el visto bueno del dueño. Nunca regenera un contrato desde cero: lo **edita**, para conservar lo decidido (intent, a11y, governance).
+## Qué hace y qué no
 
-## Antes de empezar
+Detecta diferencias y **propone**. No aplica nada sin el visto bueno del dueño. Nunca regenera un contrato desde cero: lo **edita**, para conservar lo decidido (intent, a11y, meta.owner, meta.customization).
+
+## Qué necesitas
 
 - `ds.config.json` (puente), `tokens/build/tokens.json` y los contratos afectados.
 - `meta.figmaSyncedAt` de cada contrato. Con `figma-console` puedes acotar con `figma_get_changes_since_version` o `figma_diff_versions`.
 
-## Proceso
+## Pasos
 
 1. **Alcance:** pregunta si es todo el sistema, solo tokens o un componente.
 2. **Tokens:** lee las variables como en `ds-tokens` y compara por `$extensions.figma.variable` (o `id`):
@@ -48,12 +52,12 @@ Detecta diferencias y **propone**. No aplica nada sin el visto bueno del dueño.
    - `npm run tokens` (si tocaste tokens), `npm run check` y `npm run docs`.
 6. Si hay código, avisa de que hay que regenerarlo o ajustarlo con `ds-component`.
 
-## Salida
+## Qué entrega
 
 - Informe de diferencias.
 - Tras aprobar: contratos y tokens actualizados, CHANGELOG y versiones.
 
-## Checklist
+## Cómo comprobarlo
 
 - [ ] Nada aplicado sin aprobación.
 - [ ] Cada contrato cambiado tiene versión nueva y entrada en el CHANGELOG.

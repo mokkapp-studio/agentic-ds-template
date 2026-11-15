@@ -63,6 +63,5 @@
   },
   "form": { "value": { "type": "boolean-mixed", "control": "both" }, "nativeInput": "input[type=checkbox]", "label": "label", "description": null, "error": null, "required": true, "validation": ["required"], "submitsAs": "value si está marcado" },
   "composition": { "nested": [{ "part": "indicator", "component": "Icon", "fixedProps": { "size": "s" } }] },
-  "governance": { "owner": "equipo-fixture", "canExtend": [], "askFirst": ["Tamaños nuevos"] },
-  "meta": { "needsReview": [], "provenance": { "props": { "source": "measured", "by": "ds-contract", "at": "2026-01-10", "ref": "2:1" }, "intent": { "source": "decided", "by": "equipo-fixture", "at": "2026-01-12", "ref": null } }, "code": null }
+  "meta": { "owner": "equipo-fixture", "customization": { "allowed": [], "askOwner": ["Tamaños nuevos"] }, "needsReview": [], "provenance": { "props": { "source": "measured", "by": "ds-contract", "at": "2026-01-10", "ref": "2:1" }, "intent": { "source": "decided", "by": "equipo-fixture", "at": "2026-01-12", "ref": null } }, "code": null }
 }
